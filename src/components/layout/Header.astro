@@ -1,0 +1,75 @@
+---
+import HereticTick from '../ui/HereticTick.astro';
+
+const pathname = Astro.url.pathname;
+
+const navItems = [
+  { href: '/quiz', label: 'Quiz' },
+  { href: '/explore', label: 'Explore' },
+  { href: '/articles', label: 'Articles' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-charcoal/10 bg-parchment/90 backdrop-blur-md">
+  <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a
+      href="/"
+      class="text-xl font-bold text-charcoal hover:text-crimson transition-colors"
+      style="font-family: 'Playfair Display', Georgia, serif;"
+    >
+      Are You a Heretic?<HereticTick size="sm" />
+    </a>
+    <div class="hidden sm:flex gap-6 text-sm font-medium">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'transition-colors',
+            pathname.startsWith(item.href)
+              ? 'text-crimson'
+              : 'text-charcoal/70 hover:text-crimson',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-btn"
+      class="sm:hidden p-2 text-charcoal"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden sm:hidden border-t border-charcoal/10 bg-parchment px-4 py-3">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class:list={[
+          'block py-2 text-sm font-medium transition-colors',
+          pathname.startsWith(item.href)
+            ? 'text-crimson'
+            : 'text-charcoal/70',
+        ]}
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
+</header>
+
+<script>
+  document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('mobile-menu-btn');
+    menu?.classList.toggle('hidden');
+    btn?.setAttribute('aria-expanded', menu?.classList.contains('hidden') ? 'false' : 'true');
+  });
+</script>

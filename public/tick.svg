@@ -1,0 +1,93 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7E7B5"/>
+      <stop offset="40%" stop-color="#E0B45C"/>
+      <stop offset="100%" stop-color="#A86B1F"/>
+    </linearGradient>
+
+    <linearGradient id="shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E0B45C" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#FFF6D5" stop-opacity="0.7"/>
+      <stop offset="60%" stop-color="#FFF6D5" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#E0B45C" stop-opacity="0"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="-1 0" to="2 0" dur="2.5s" begin="1.5s" repeatCount="1"/>
+    </linearGradient>
+
+    <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="1 0.8 0 0 0.1
+                0.7 0.5 0 0 0.05
+                0 0 0 0 0
+                0 0 0 0.5 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <style>
+      .tick-path {
+        stroke-dasharray: 1100;
+        stroke-dashoffset: 1100;
+        animation: draw-tick 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+      }
+      .tick-highlight {
+        stroke-dasharray: 1100;
+        stroke-dashoffset: 1100;
+        animation: draw-tick 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.87s forwards;
+      }
+      .tick-shimmer {
+        stroke-dasharray: 1100;
+        stroke-dashoffset: 1100;
+        animation: draw-tick 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.87s forwards;
+      }
+      @keyframes draw-tick {
+        to { stroke-dashoffset: 0; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .tick-path, .tick-highlight, .tick-shimmer {
+          animation: none;
+          stroke-dashoffset: 0;
+        }
+      }
+    </style>
+  </defs>
+
+  <g filter="url(#goldGlow)">
+    <!-- Main gold stroke -->
+    <path
+      class="tick-path"
+      d="M200 460 L385 735 L855 195"
+      fill="none"
+      stroke="url(#goldStroke)"
+      stroke-width="64"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <!-- Inner highlight -->
+    <path
+      class="tick-highlight"
+      d="M200 460 L385 735 L855 195"
+      fill="none"
+      stroke="#FFF6D5"
+      stroke-opacity="0.3"
+      stroke-width="26"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <!-- Shimmer pass -->
+    <path
+      class="tick-shimmer"
+      d="M200 460 L385 735 L855 195"
+      fill="none"
+      stroke="url(#shimmer)"
+      stroke-width="18"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+</svg>

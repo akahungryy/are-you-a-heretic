@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/ui/HeroSection.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('articles');
+const featuredArticles = allArticles
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title="Are You a Heretic? — Every Christian Is, According to Someone"
+  description="Take the heresy quiz and discover which church councils would have questioned your beliefs. 18 questions, 2000 years of controversy, and a surprising conclusion."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Are You a Heretic?",
+      "url": "https://areyouaheretic.com",
+      "description": "An interactive quiz exploring 2,000 years of Christian doctrinal controversy through the lens of church councils and heresy.",
+    })} />
+  </Fragment>
+
+  <HeroSection />
+
+  <section class="py-16 px-4 bg-white/50">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2
+        class="text-3xl font-bold mb-8 text-charcoal"
+        style="font-family: 'Playfair Display', Georgia, serif;"
+      >
+        How It Works
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6">
+          <div class="text-4xl font-bold text-gold mb-4" style="font-family: 'Playfair Display', serif;">1</div>
+          <h3 class="font-bold text-lg mb-2 text-charcoal">Answer Questions</h3>
+          <p class="text-charcoal/60">18 questions about what you actually believe about God, Jesus, salvation, and the church.</p>
+        </div>
+        <div class="p-6">
+          <div class="text-4xl font-bold text-crimson mb-4" style="font-family: 'Playfair Display', serif;">2</div>
+          <h3 class="font-bold text-lg mb-2 text-charcoal">Get Condemned</h3>
+          <p class="text-charcoal/60">Every answer maps to a historical controversy. There's no safe option — and that's the point.</p>
+        </div>
+        <div class="p-6">
+          <div class="text-4xl font-bold text-gold mb-4" style="font-family: 'Playfair Display', serif;">3</div>
+          <h3 class="font-bold text-lg mb-2 text-charcoal">Learn Why</h3>
+          <p class="text-charcoal/60">Discover the fascinating history behind each condemnation — and why these debates still matter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {featuredArticles.length > 0 && (
+    <section class="py-16 px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2
+          class="text-3xl font-bold mb-2 text-center text-charcoal"
+          style="font-family: 'Playfair Display', Georgia, serif;"
+        >
+          From the Archives
+        </h2>
+        <p class="text-charcoal/50 text-center mb-10">Deep dives into the surprising history of orthodoxy</p>
+        <div class="grid md:grid-cols-3 gap-6">
+          {featuredArticles.map((article) => (
+            <a href={`/articles/${article.id}`} class="block group">
+              <div class="bg-white rounded-xl border border-charcoal/10 p-6 h-full hover:border-gold hover:shadow-lg transition-all">
+                <span class="inline-block px-2 py-0.5 rounded-full text-xs font-medium bg-gold/10 text-gold-light mb-3 capitalize">
+                  {article.data.category}
+                </span>
+                <h3
+                  class="font-bold text-lg mb-2 text-charcoal group-hover:text-crimson transition-colors"
+                  style="font-family: 'Playfair Display', Georgia, serif;"
+                >
+                  {article.data.title}
+                </h3>
+                <p class="text-charcoal/60 text-sm line-clamp-3">{article.data.description}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

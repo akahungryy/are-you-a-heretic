@@ -1,0 +1,43 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldStroke" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#F7E7B5"/>
+      <stop offset="50%" stop-color="#E0B45C"/>
+      <stop offset="100%" stop-color="#A86B1F"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#252547"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+
+    <style>
+      .tick-path {
+        stroke-dasharray: 70;
+        stroke-dashoffset: 70;
+        animation: draw-tick 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+      }
+      @keyframes draw-tick {
+        to { stroke-dashoffset: 0; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .tick-path { animation: none; stroke-dashoffset: 0; }
+      }
+    </style>
+  </defs>
+
+  <!-- Dark circular background -->
+  <circle cx="32" cy="32" r="31" fill="url(#bgGrad)"/>
+  <circle cx="32" cy="32" r="29" fill="none" stroke="#d4a373" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- Sharp miter checkmark -->
+  <path
+    class="tick-path"
+    d="M12 29 L24 46 L54 12"
+    fill="none"
+    stroke="url(#goldStroke)"
+    stroke-width="3.8"
+    stroke-linecap="round"
+    stroke-linejoin="miter"
+    stroke-miterlimit="10"
+  />
+</svg>

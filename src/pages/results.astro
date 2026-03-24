@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeresyProfileCard from '../components/quiz/HeresyProfileCard';
+---
+
+<BaseLayout title="Your Results" description="Your heresy profile is ready. See what 2,000 years of church history makes of your beliefs.">
+  <HeresyProfileCard client:load />
+</BaseLayout>

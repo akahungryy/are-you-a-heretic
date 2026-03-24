@@ -1,0 +1,84 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { size = 'md' } = Astro.props;
+const dims = { sm: '0.7em', md: '0.85em', lg: '1.1em' };
+const dim = dims[size];
+const id = `tick-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<svg
+  width={dim}
+  height={dim}
+  viewBox="0 0 1024 1024"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  role="img"
+  style={`display: inline-block; vertical-align: 0.1em; margin-left: 0.08em;`}
+  class="heretic-tick"
+>
+  <defs>
+    <linearGradient id={`gs-${id}`} x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7E7B5"/>
+      <stop offset="40%" stop-color="#E0B45C"/>
+      <stop offset="100%" stop-color="#C8922A"/>
+    </linearGradient>
+    <filter id={`gl-${id}`} x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="22" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="1 0.7 0 0 0.15
+                0.8 0.55 0 0 0.08
+                0 0 0 0 0
+                0 0 0 0.6 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter={`url(#gl-${id})`}>
+    <path
+      class="tick-main"
+      d="M180 470 L380 740 L860 185"
+      fill="none"
+      stroke={`url(#gs-${id})`}
+      stroke-width="72"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      class="tick-shine"
+      d="M180 470 L380 740 L860 185"
+      fill="none"
+      stroke="#FFF6D5"
+      stroke-opacity="0.35"
+      stroke-width="28"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+</svg>
+
+<style>
+  .heretic-tick .tick-main,
+  .heretic-tick .tick-shine {
+    stroke-dasharray: 1100;
+    stroke-dashoffset: 1100;
+    animation: heretic-draw 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+  }
+  .heretic-tick .tick-shine {
+    animation-delay: 0.9s;
+  }
+  @keyframes heretic-draw {
+    to { stroke-dashoffset: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .heretic-tick .tick-main,
+    .heretic-tick .tick-shine {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+  }
+</style>

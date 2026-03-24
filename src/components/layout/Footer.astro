@@ -1,0 +1,25 @@
+---
+import HereticTick from '../ui/HereticTick.astro';
+---
+
+<footer class="border-t border-charcoal/10 bg-charcoal text-parchment/60 py-10 mt-auto">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="text-center md:text-left">
+        <p class="font-semibold text-parchment/80" style="font-family: 'Playfair Display', Georgia, serif;">
+          Are You a Heretic?<HereticTick size="sm" />
+        </p>
+        <p class="text-sm mt-1">Built with historical sass and intellectual humility.</p>
+      </div>
+      <nav class="flex gap-6 text-sm">
+        <a href="/quiz" class="hover:text-gold transition-colors">Quiz</a>
+        <a href="/explore" class="hover:text-gold transition-colors">Explore</a>
+        <a href="/articles" class="hover:text-gold transition-colors">Articles</a>
+        <a href="/about" class="hover:text-gold transition-colors">About</a>
+      </nav>
+    </div>
+    <div class="mt-6 pt-6 border-t border-parchment/10 text-center text-xs text-parchment/40">
+      <p>No actual anathemas were issued in the making of this quiz.</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 — Page Condemned">
+  <div class="flex flex-col items-center justify-center py-24 px-4 text-center max-w-2xl mx-auto">
+    <p class="text-sm font-semibold text-crimson uppercase tracking-widest mb-4">
+      Anathema Sit
+    </p>
+    <h1 class="text-7xl font-black text-charcoal mb-4" style="font-family: 'Playfair Display', Georgia, serif;">
+      404
+    </h1>
+    <p class="text-xl text-charcoal/70 mb-2" style="font-family: 'Crimson Text', Georgia, serif;">
+      This page has been condemned by the Council of HTTP (404 AD).
+    </p>
+    <p class="text-charcoal/50 mb-2" style="font-family: 'Crimson Text', Georgia, serif;">
+      It was found guilty of Not Existing and has been anathematized.
+    </p>
+    <p class="text-charcoal/40 text-sm mb-10 italic">
+      The bishops were unanimous. The emperor concurred. The page was exiled.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a
+        href="/quiz"
+        class="px-6 py-3 bg-gold text-charcoal font-bold rounded-lg hover:bg-gold-light transition-colors"
+      >
+        Take the Quiz
+      </a>
+      <a
+        href="/explore"
+        class="px-6 py-3 border-2 border-charcoal/20 text-charcoal font-semibold rounded-lg hover:border-charcoal/40 transition-colors"
+      >
+        Explore Heresies
+      </a>
+      <a
+        href="/"
+        class="px-6 py-3 border-2 border-charcoal/20 text-charcoal font-semibold rounded-lg hover:border-charcoal/40 transition-colors"
+      >
+        Return Home
+      </a>
+    </div>
+  </div>
+</BaseLayout>

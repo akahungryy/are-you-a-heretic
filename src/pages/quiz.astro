@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuizContainer from '../components/quiz/QuizContainer';
+---
+
+<BaseLayout title="Am I a Heretic? Take the Quiz" description="Find out which church councils would condemn your beliefs. Every answer triggers a historical condemnation — there is no safe option. A theology quiz 2000 years in the making.">
+  <div class="py-8">
+    <QuizContainer client:load />
+  </div>
+</BaseLayout>

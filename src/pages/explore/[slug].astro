@@ -1,0 +1,112 @@
+---
+import { getCollection, render } from 'astro:content';
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+export async function getStaticPaths() {
+  const heresyEntries = await getCollection('heresies');
+  return heresyEntries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Find articles that reference this heresy
+const allArticles = await getCollection('articles');
+const relatedArticles = allArticles.filter(
+  (article) => article.data.relatedHeresies?.includes(entry.id)
+);
+---
+
+<ContentLayout title={entry.data.title} description={entry.data.shortDescription}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": entry.data.title,
+      "description": entry.data.shortDescription,
+      "url": `https://areyouaheretic.com/explore/${entry.id}`,
+    })} />
+  </Fragment>
+
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-gold/15 text-gold-light uppercase tracking-wide">
+        {entry.data.category}
+      </span>
+      <span class="text-xs text-charcoal/40">
+        {entry.data.yearCondemned > 0 ? `Condemned ${entry.data.yearCondemned} AD` : 'Modern Controversy'}
+      </span>
+    </div>
+    <h1 class="text-4xl md:text-5xl font-black text-charcoal mb-4" style="font-family: 'Playfair Display', Georgia, serif;">
+      {entry.data.title}
+    </h1>
+    <p class="text-lg text-charcoal/60" style="font-family: 'Crimson Text', Georgia, serif;">
+      {entry.data.shortDescription}
+    </p>
+    <div class="flex gap-2 mt-4 flex-wrap">
+      {entry.data.condemnedBy.map((council: string) => (
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border bg-crimson/5 text-crimson border-crimson/20">
+          {council}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <div class="prose-heresy">
+    <Content />
+  </div>
+
+  <!-- Related heresies -->
+  {entry.data.relatedHeresies.length > 0 && (
+    <div class="mt-12 pt-8 border-t border-charcoal/10">
+      <h2 class="text-xl font-bold text-charcoal mb-4" style="font-family: 'Playfair Display', Georgia, serif;">
+        Related Heresies
+      </h2>
+      <div class="flex flex-wrap gap-2">
+        {entry.data.relatedHeresies.map((slug: string) => (
+          <a
+            href={`/explore/${slug}`}
+            class="px-4 py-2 bg-charcoal/5 border border-charcoal/10 rounded-lg text-sm font-medium text-charcoal hover:border-crimson/30 hover:text-crimson transition-colors"
+          >
+            {slug.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())}
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Related articles -->
+  {relatedArticles.length > 0 && (
+    <div class="mt-8 pt-8 border-t border-charcoal/10">
+      <h2 class="text-xl font-bold text-charcoal mb-4" style="font-family: 'Playfair Display', Georgia, serif;">
+        Further Reading
+      </h2>
+      <div class="grid gap-3">
+        {relatedArticles.map((article) => (
+          <a
+            href={`/articles/${article.id}`}
+            class="block p-4 bg-white border border-charcoal/10 rounded-lg hover:border-gold hover:shadow-sm transition-all group"
+          >
+            <span class="font-semibold text-charcoal group-hover:text-crimson transition-colors">
+              {article.data.title}
+            </span>
+            <p class="text-charcoal/50 text-sm mt-1">{article.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Navigation -->
+  <div class="mt-12 flex flex-wrap gap-4">
+    <a href="/quiz" class="text-sm text-crimson hover:text-crimson-light underline underline-offset-2">
+      ← Back to Quiz
+    </a>
+    <a href="/explore" class="text-sm text-crimson hover:text-crimson-light underline underline-offset-2">
+      ← All Heresies
+    </a>
+  </div>
+</ContentLayout>
