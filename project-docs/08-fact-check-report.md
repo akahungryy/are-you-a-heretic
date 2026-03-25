@@ -5,6 +5,16 @@
 
 ---
 
+> **STATUS UPDATE (2026-03-26):** All issues in this report have been resolved:
+> - 2 inaccurate claims corrected (ETS 2016, Marcionism/Constantinople I)
+> - 3 overstated claims softened (Rimini detention, Liberius torture, Dort/TULIP)
+> - 6 missing deep-dive pages created (transubstantiation, cessationism, papal-infallibility, paedobaptism, credobaptism, semi-arianism)
+> - Anti-nicene-period.mdx expanded from stub to full content
+> - 5 broken related-heresy links fixed
+> - Build verified clean (45 pages, 2026-03-26)
+
+---
+
 ## EXECUTIVE SUMMARY
 
 The site is historically solid overall. Of 25 specific factual claims verified against external sources, 19 are fully accurate, 4 need minor corrections or nuance, and 2 are genuinely inaccurate. The biggest gap is **6 missing deep-dive (MDX) heresy pages** and **1 placeholder page**, plus **5 broken related-heresy links** within existing pages. All 8 articles and the quiz logic are structurally sound.
