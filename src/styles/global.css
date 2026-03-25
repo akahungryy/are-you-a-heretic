@@ -26,10 +26,27 @@ body {
   font-family: var(--font-family-body);
   color: var(--color-charcoal);
   background-color: var(--color-parchment);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3 {
   font-family: var(--font-family-display);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  letter-spacing: -0.02em;
+}
+
+/* Utility classes for font families */
+.font-display {
+  font-family: var(--font-family-display);
+}
+.font-content {
+  font-family: var(--font-family-content);
 }
 
 /* Prose styling for content pages */

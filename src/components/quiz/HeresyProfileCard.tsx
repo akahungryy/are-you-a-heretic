@@ -4,6 +4,7 @@ import type { QuizResult } from '../../data/types';
 import { heresies } from '../../data/heresies';
 import AnimatedCounter from './AnimatedCounter';
 import ShareButton from './ShareButton';
+import HereticTickReact from './HereticTickReact';
 
 export default function HeresyProfileCard() {
   const [result, setResult] = useState<QuizResult | null>(null);
@@ -22,7 +23,7 @@ export default function HeresyProfileCard() {
         <p className="text-lg text-charcoal/60 mb-4">No results found.</p>
         <a
           href="/quiz"
-          className="inline-block px-6 py-3 bg-gold text-charcoal font-bold rounded-lg hover:bg-gold-light transition-colors"
+          className="inline-block px-6 py-3 bg-gold text-charcoal font-bold rounded-xl hover:bg-gold-light transition-colors shadow-sm hover:shadow-md font-display"
         >
           Take the Quiz
         </a>
@@ -56,38 +57,31 @@ export default function HeresyProfileCard() {
           The Councils Have Spoken
         </p>
         <h1
-          className="text-4xl md:text-5xl font-black text-charcoal mb-2"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+          className="text-3xl md:text-4xl font-black text-charcoal mb-2"
         >
-          Your Heresy Profile
-          <img
-            src="/tick.svg"
-            alt="✓"
-            aria-hidden={true}
-            style={{ display: 'inline-block', width: '0.85em', height: '0.85em', verticalAlign: '0.15em', marginLeft: '0.05em' }}
-          />
+          Your Heresy Profile<HereticTickReact />
         </h1>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
-        <div className="bg-crimson/5 border border-crimson/10 rounded-xl p-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+        <div className="bg-crimson/5 border border-crimson/10 rounded-xl p-4 md:p-5">
           <AnimatedCounter target={result.totalCouncilsAgainst} />
           <p className="text-xs text-charcoal/60 mt-1">
             Councils That Disagree
           </p>
         </div>
-        <div className="bg-crimson/5 border border-crimson/10 rounded-xl p-4">
+        <div className="bg-crimson/5 border border-crimson/10 rounded-xl p-4 md:p-5">
           <AnimatedCounter target={result.ecumenicalCouncilsAgainst} />
           <p className="text-xs text-charcoal/60 mt-1">Ecumenical Councils</p>
         </div>
-        <div className="bg-rose-50 border border-rose-200/50 rounded-xl p-4">
+        <div className="bg-rose-50 border border-rose-200/50 rounded-xl p-4 md:p-5">
           <AnimatedCounter target={result.antiNiceneCouncilsAgainst} />
           <p className="text-xs text-charcoal/60 mt-1">
             Anti-Nicene Councils (341–360)
           </p>
         </div>
-        <div className="bg-amber-50 border border-amber-200/50 rounded-xl p-4">
+        <div className="bg-amber-50 border border-amber-200/50 rounded-xl p-4 md:p-5">
           <AnimatedCounter target={result.heresies.length} />
           <p className="text-xs text-charcoal/60 mt-1">Heresies Triggered</p>
         </div>
@@ -96,8 +90,7 @@ export default function HeresyProfileCard() {
       {/* Condemnors estimate */}
       <div className="bg-charcoal text-parchment rounded-xl p-5 text-center">
         <div
-          className="text-xl font-bold text-gold"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+          className="text-xl font-bold text-gold font-display"
         >
           {result.estimatedCondemnors}
         </div>
@@ -114,8 +107,7 @@ export default function HeresyProfileCard() {
           className="bg-rose-50 border border-rose-200 rounded-xl p-5"
         >
           <p
-            className="text-sm font-bold text-rose-900 mb-2"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            className="text-sm font-bold text-rose-900 mb-2 font-display"
           >
             A note about your Trinitarian beliefs:
           </p>
@@ -142,8 +134,7 @@ export default function HeresyProfileCard() {
           className="bg-amber-50 border border-amber-200 rounded-xl p-5"
         >
           <p
-            className="text-sm font-bold text-amber-900 mb-2"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            className="text-sm font-bold text-amber-900 mb-2 font-display"
           >
             A note about your subordinationist views:
           </p>
@@ -194,7 +185,6 @@ export default function HeresyProfileCard() {
       <div className="space-y-4">
         <h2
           className="text-2xl font-bold text-charcoal"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
         >
           Your Heresies
         </h2>
@@ -227,11 +217,10 @@ export default function HeresyProfileCard() {
       <motion.div
         {...fadeIn}
         transition={{ delay: 0.8, duration: 0.6 }}
-        className="bg-charcoal text-parchment rounded-xl p-8 md:p-10"
+        className="bg-charcoal text-parchment rounded-xl p-6 md:p-10 border border-gold/10"
       >
         <div
-          className="max-w-lg mx-auto space-y-4 text-base leading-relaxed"
-          style={{ fontFamily: "'Crimson Text', Georgia, serif" }}
+          className="max-w-lg mx-auto space-y-4 text-base leading-relaxed font-content"
         >
           <p className="text-gold font-bold text-lg">
             Everyone who took this quiz got flagged by someone.
@@ -270,30 +259,35 @@ export default function HeresyProfileCard() {
             What the New Testament authors actually cared about most wasn't getting
             the metaphysics exactly right — it was this:
           </p>
-          <ul className="text-parchment/70 space-y-2 pl-4">
+          <ul className="text-parchment/70 space-y-2 list-none">
             <li>
+              <span className="text-gold mr-2">—</span>
               <strong className="text-gold/80">Love</strong> — the greatest of
               these (1 Cor 13:13)
             </li>
             <li>
+              <span className="text-gold mr-2">—</span>
               <strong className="text-gold/80">Justice</strong> — for the
               vulnerable, the oppressed, the forgotten (James 1:27, Matt
               25:31-46)
             </li>
             <li>
+              <span className="text-gold mr-2">—</span>
               <strong className="text-gold/80">Unity</strong> — not uniformity
               of doctrine, but unity of purpose and love (John 17:21)
             </li>
             <li>
+              <span className="text-gold mr-2">—</span>
               <strong className="text-gold/80">Humility</strong> — including
               intellectual humility about our own certainty (Phil 2:3)
             </li>
             <li>
+              <span className="text-gold mr-2">—</span>
               <strong className="text-gold/80">Relationship</strong> — knowing
               God, not just knowing about God (John 17:3)
             </li>
           </ul>
-          <p className="text-parchment/60 text-sm italic pt-2">
+          <p className="text-parchment/50 text-sm italic pt-2">
             The NT authors never used the word "orthodox." They never defined{' '}
             <em>homoousios</em>. They never voted on whether Christ had one will
             or two. They told stories, wrote letters, sang hymns, and urged their
@@ -313,7 +307,7 @@ export default function HeresyProfileCard() {
             sessionStorage.removeItem('quizResults');
             sessionStorage.removeItem('quizState');
           }}
-          className="px-6 py-3 border-2 border-charcoal/20 text-charcoal rounded-lg font-semibold hover:border-charcoal/40 transition-colors"
+          className="px-6 py-3 border border-charcoal/20 text-charcoal rounded-xl font-semibold hover:border-gold hover:text-gold transition-colors"
         >
           Retake Quiz
         </a>

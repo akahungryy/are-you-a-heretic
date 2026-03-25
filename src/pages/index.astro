@@ -25,27 +25,26 @@ const featuredArticles = allArticles
 
   <HeroSection />
 
-  <section class="py-16 px-4 bg-white/50">
+  <section class="py-12 md:py-16 px-4 bg-white/50">
     <div class="max-w-4xl mx-auto text-center">
       <h2
-        class="text-3xl font-bold mb-8 text-charcoal"
-        style="font-family: 'Playfair Display', Georgia, serif;"
+        class="text-2xl md:text-3xl font-bold mb-8 text-charcoal"
       >
         How It Works
       </h2>
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-6">
-          <div class="text-4xl font-bold text-gold mb-4" style="font-family: 'Playfair Display', serif;">1</div>
+        <div class="rounded-xl border border-charcoal/5 bg-white/60 p-6 md:p-8">
+          <div class="text-3xl font-bold text-gold mb-4 font-display">1</div>
           <h3 class="font-bold text-lg mb-2 text-charcoal">Answer Questions</h3>
           <p class="text-charcoal/60">18 questions about what you actually believe about God, Jesus, salvation, and the church.</p>
         </div>
-        <div class="p-6">
-          <div class="text-4xl font-bold text-crimson mb-4" style="font-family: 'Playfair Display', serif;">2</div>
+        <div class="rounded-xl border border-charcoal/5 bg-white/60 p-6 md:p-8">
+          <div class="text-3xl font-bold text-crimson mb-4 font-display">2</div>
           <h3 class="font-bold text-lg mb-2 text-charcoal">Get Condemned</h3>
           <p class="text-charcoal/60">Every answer maps to a historical controversy. There's no safe option — and that's the point.</p>
         </div>
-        <div class="p-6">
-          <div class="text-4xl font-bold text-gold mb-4" style="font-family: 'Playfair Display', serif;">3</div>
+        <div class="rounded-xl border border-charcoal/5 bg-white/60 p-6 md:p-8">
+          <div class="text-3xl font-bold text-gold mb-4 font-display">3</div>
           <h3 class="font-bold text-lg mb-2 text-charcoal">Learn Why</h3>
           <p class="text-charcoal/60">Discover the fascinating history behind each condemnation — and why these debates still matter.</p>
         </div>
@@ -54,16 +53,15 @@ const featuredArticles = allArticles
   </section>
 
   {featuredArticles.length > 0 && (
-    <section class="py-16 px-4">
+    <section class="py-12 md:py-16 px-4">
       <div class="max-w-4xl mx-auto">
         <h2
-          class="text-3xl font-bold mb-2 text-center text-charcoal"
-          style="font-family: 'Playfair Display', Georgia, serif;"
+          class="text-2xl md:text-3xl font-bold mb-2 text-center text-charcoal"
         >
           From the Archives
         </h2>
         <p class="text-charcoal/50 text-center mb-10">Deep dives into the surprising history of orthodoxy</p>
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {featuredArticles.map((article) => (
             <a href={`/articles/${article.id}`} class="block group">
               <div class="bg-white rounded-xl border border-charcoal/10 p-6 h-full hover:border-gold hover:shadow-lg transition-all">
@@ -71,8 +69,7 @@ const featuredArticles = allArticles
                   {article.data.category}
                 </span>
                 <h3
-                  class="font-bold text-lg mb-2 text-charcoal group-hover:text-crimson transition-colors"
-                  style="font-family: 'Playfair Display', Georgia, serif;"
+                  class="font-bold text-lg mb-2 text-charcoal group-hover:text-crimson transition-colors font-display"
                 >
                   {article.data.title}
                 </h3>

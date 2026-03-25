@@ -16,6 +16,7 @@
     "@astrojs/mdx": "^5.0.2",
     "@astrojs/react": "^5.0.1",
     "@astrojs/sitemap": "^3.7.1",
+    "@rollup/rollup-linux-arm64-gnu": "^4.60.0",
     "@tailwindcss/vite": "^4.2.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

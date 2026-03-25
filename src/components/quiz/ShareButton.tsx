@@ -40,7 +40,7 @@ export default function ShareButton({ result }: Props) {
   return (
     <button
       onClick={handleShare}
-      className="px-6 py-3 bg-crimson text-parchment rounded-lg font-bold hover:bg-crimson-light transition-colors cursor-pointer shadow-sm"
+      className="px-6 py-3 bg-crimson text-parchment rounded-xl font-bold hover:bg-crimson-light transition-colors cursor-pointer shadow-sm hover:shadow-md"
     >
       {copied ? 'Copied!' : 'Share Your Condemnation'}
     </button>

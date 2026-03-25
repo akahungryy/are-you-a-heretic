@@ -23,7 +23,6 @@ export default function QuestionCard({
       </div>
       <h2
         className="text-2xl md:text-3xl font-bold text-charcoal"
-        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
       >
         {question.question}
       </h2>

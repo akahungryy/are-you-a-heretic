@@ -12,11 +12,10 @@ const navItems = [
 ---
 
 <header class="sticky top-0 z-50 border-b border-charcoal/10 bg-parchment/90 backdrop-blur-md">
-  <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+  <nav class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
     <a
       href="/"
-      class="text-xl font-bold text-charcoal hover:text-crimson transition-colors"
-      style="font-family: 'Playfair Display', Georgia, serif;"
+      class="text-xl font-bold text-charcoal hover:text-crimson transition-colors font-display tracking-tight"
     >
       Are You a Heretic?<HereticTick size="sm" />
     </a>
@@ -25,9 +24,9 @@ const navItems = [
         <a
           href={item.href}
           class:list={[
-            'transition-colors',
+            'transition-colors hover:underline underline-offset-4 decoration-2 decoration-crimson',
             pathname.startsWith(item.href)
-              ? 'text-crimson'
+              ? 'text-crimson font-semibold'
               : 'text-charcoal/70 hover:text-crimson',
           ]}
         >
@@ -41,6 +40,7 @@ const navItems = [
       class="sm:hidden p-2 text-charcoal"
       aria-label="Toggle navigation menu"
       aria-expanded="false"
+      aria-controls="mobile-menu"
     >
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -48,7 +48,7 @@ const navItems = [
     </button>
   </nav>
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden sm:hidden border-t border-charcoal/10 bg-parchment px-4 py-3">
+  <div id="mobile-menu" class="sm:hidden border-t border-charcoal/10 bg-parchment px-4 transition-all duration-200 max-h-0 overflow-hidden">
     {navItems.map((item) => (
       <a
         href={item.href}
@@ -69,7 +69,10 @@ const navItems = [
   document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
     const menu = document.getElementById('mobile-menu');
     const btn = document.getElementById('mobile-menu-btn');
-    menu?.classList.toggle('hidden');
-    btn?.setAttribute('aria-expanded', menu?.classList.contains('hidden') ? 'false' : 'true');
+    const isOpen = menu?.classList.contains('max-h-48');
+    menu?.classList.toggle('max-h-0', isOpen);
+    menu?.classList.toggle('max-h-48', !isOpen);
+    menu?.classList.toggle('py-3', !isOpen);
+    btn?.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
   });
 </script>

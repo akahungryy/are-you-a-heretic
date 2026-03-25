@@ -3,6 +3,18 @@ import type { QuizAnswer } from '../../data/types';
 import { getCouncilsForAnswer } from '../../lib/scoring';
 import { heresies } from '../../data/heresies';
 
+// Static mapping: heresy ID → related article slug
+const heresyArticleMap: Record<string, { slug: string; title: string }> = {
+  arianism: { slug: 'what-is-arianism-simple', title: 'What Is Arianism? A Simple Explanation' },
+  modalism: { slug: 'trinity-heresy-explained', title: 'Every Way to Be Wrong About the Trinity' },
+  subordinationism: { slug: 'when-orthodox-was-heretical', title: 'The 20 Years When Orthodoxy Was Heretical' },
+  homoianism: { slug: 'council-of-rimini', title: 'When 400 Bishops Were Bullied Into Heresy' },
+  'nicene-trinitarianism': { slug: 'when-orthodox-was-heretical', title: 'The 20 Years When Orthodoxy Was Heretical' },
+  universalism: { slug: 'is-universalism-heresy', title: 'Is Universalism a Heresy?' },
+  adoptionism: { slug: 'what-did-early-christians-believe', title: 'What Did Early Christians Actually Believe?' },
+  docetism: { slug: 'what-did-early-christians-believe', title: 'What Did Early Christians Actually Believe?' },
+};
+
 interface Props {
   answer: QuizAnswer;
   onNext: () => void;
@@ -52,7 +64,6 @@ export default function RevealCard({ answer, onNext, isLastQuestion }: Props) {
 
       <h3
         className="text-xl font-bold mb-3 text-crimson"
-        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
       >
         {answer.revealTitle}
       </h3>
@@ -68,6 +79,7 @@ export default function RevealCard({ answer, onNext, isLastQuestion }: Props) {
           </p>
           <div
             className={`flex flex-wrap gap-1.5 ${condemningCouncils.length > 6 ? 'max-h-28 overflow-y-auto pr-1' : ''}`}
+            {...(condemningCouncils.length > 6 ? { tabIndex: 0, role: 'region', 'aria-label': 'Condemning councils' } : {})}
           >
             {condemningCouncils.map((council) =>
               council ? (
@@ -106,8 +118,7 @@ export default function RevealCard({ answer, onNext, isLastQuestion }: Props) {
       <div className="flex flex-wrap items-center gap-3">
         <button
           onClick={onNext}
-          className="px-6 py-3 bg-gold text-charcoal rounded-lg font-bold hover:bg-gold-light transition-colors cursor-pointer shadow-sm"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+          className="px-6 py-3 bg-gold text-charcoal rounded-xl font-bold hover:bg-gold-light transition-colors cursor-pointer shadow-sm hover:shadow-md font-display"
         >
           {isLastQuestion ? 'See My Results' : 'Next Question'}
         </button>
@@ -118,6 +129,15 @@ export default function RevealCard({ answer, onNext, isLastQuestion }: Props) {
             className="text-sm text-crimson hover:text-crimson-light underline underline-offset-2"
           >
             Learn more about {heresy.name}
+          </a>
+        )}
+
+        {answer.heresyTriggered && heresyArticleMap[answer.heresyTriggered] && (
+          <a
+            href={`/articles/${heresyArticleMap[answer.heresyTriggered].slug}`}
+            className="text-sm text-charcoal/50 hover:text-charcoal underline underline-offset-2"
+          >
+            Read: {heresyArticleMap[answer.heresyTriggered].title}
           </a>
         )}
       </div>
