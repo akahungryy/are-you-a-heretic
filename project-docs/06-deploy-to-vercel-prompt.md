@@ -6,7 +6,7 @@ This prompt takes the fully built Astro project and publishes it live. It handle
 
 **Project location:** `/Users/paulrobson/projects/are-you-a-heretic`
 **GitHub username:** `akahungryy`
-**Target domain:** `areyouaheretic.com` (to be purchased separately — Vercel subdomain used initially)
+**Target domain:** `areyouaheretick.com` (to be purchased on Namecheap — Vercel subdomain used initially)
 
 ---
 
@@ -107,7 +107,7 @@ STEP 6: VERIFY DEPLOYMENT
 - Report the live URL back to me
 
 IMPORTANT NOTES:
-- The astro.config.mjs has `site: 'https://areyouaheretic.com'` — leave this as-is for now. It's used for sitemap generation and will be correct once we add the custom domain.
+- The astro.config.mjs currently has `site: 'https://areyouaheretick.com'` — UPDATE this to `site: 'https://areyouaheretick.com'` before building. This is used for sitemap generation and canonical URLs.
 - Do NOT modify any source code. This is a deployment task only.
 - If `vercel` commands fail with auth errors, tell me — I may need to run `vercel login` manually.
 - If the build fails, diagnose and fix the issue, then retry.
@@ -121,23 +121,23 @@ Once the site is live on Vercel's subdomain, the custom domain can be added. See
 
 ### Adding a Custom Domain to Vercel
 
-Once you've purchased `areyouaheretic.com` (or whichever domain), here's the Claude Code prompt to connect it:
+Once you've purchased `areyouaheretick.com` (or whichever domain), here's the Claude Code prompt to connect it:
 
 ```
-Add the custom domain areyouaheretic.com to my Vercel project. Run:
+Add the custom domain areyouaheretick.com to my Vercel project. Run:
 
-vercel domains add areyouaheretic.com
+vercel domains add areyouaheretick.com
 
 Then follow the DNS configuration instructions Vercel provides. Typically this means:
 1. Adding an A record pointing to 76.76.21.21
 2. Adding a CNAME record for www pointing to cname.vercel-dns.com
 
 After DNS propagation (can take up to 48 hours, usually much faster), verify:
-- https://areyouaheretic.com loads the site
-- https://www.areyouaheretic.com redirects to the apex domain
+- https://areyouaheretick.com loads the site
+- https://www.areyouaheretick.com redirects to the apex domain
 - SSL certificate is active (should be automatic via Vercel)
 
-Also verify the sitemap at https://areyouaheretic.com/sitemap-index.xml is accessible.
+Also verify the sitemap at https://areyouaheretick.com/sitemap-index.xml is accessible.
 ```
 
 ---
@@ -151,4 +151,4 @@ Also verify the sitemap at https://areyouaheretic.com/sitemap-index.xml is acces
 | Build fails | Check the error output — likely a missing dependency or TypeScript error |
 | Vercel deploy fails | Try `vercel deploy --prod --yes` or check `vercel logs` |
 | GitHub push rejected | Make sure `gh auth status` shows you're authenticated |
-| DNS not propagating | Wait up to 48h; use `dig areyouaheretic.com` to check |
+| DNS not propagating | Wait up to 48h; use `dig areyouaheretick.com` to check |

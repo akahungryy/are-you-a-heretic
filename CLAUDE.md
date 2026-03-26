@@ -88,3 +88,4 @@ Spec and prompt documents are in `project-docs/`:
 - 08: Fact-check report (historical accuracy audit)
 - 09: HereticTick branding spec
 - 10: UI redesign prompt
+- 11: Biblical Unitarian audit report (content bias analysis from BU perspective)
