@@ -97,6 +97,13 @@ export default function QuizContainer() {
       const results = calculateResults({ ...answers });
       sessionStorage.setItem('quizResults', JSON.stringify(results));
       sessionStorage.removeItem(STORAGE_KEY);
+      // Track quiz completion in GA4
+      if (typeof window.trackEvent === 'function') {
+        window.trackEvent('quiz_complete', {
+          heresy_count: results.heresies?.length ?? 0,
+          top_heresy: results.heresies?.[0]?.name ?? 'none',
+        });
+      }
       window.location.href = '/results';
       return;
     }
