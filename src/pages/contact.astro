@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Are You a Heretic? — questions, feedback, or theological debate welcome."
+>
+  <div class="max-w-2xl mx-auto px-4 py-16">
+    <h1 class="font-display text-4xl font-bold text-charcoal mb-2">Get in Touch</h1>
+    <p class="text-charcoal/60 font-content text-lg mb-10">Questions, feedback, or want to dispute my council dates? I'm all ears.</p>
+
+    <form id="contact-form" method="POST" class="space-y-6">
+      <input type="hidden" name="access_key" value={accessKey} />
+      <input type="hidden" name="subject" value="New Contact from Are You a Heretic?" />
+      <input type="hidden" name="from_name" value="Are You a Heretic? Contact Form" />
+      <input type="checkbox" name="botcheck" class="hidden" aria-hidden="true" />
+
+      <div>
+        <label for="name" class="block text-sm font-medium text-charcoal/80 mb-1.5">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          placeholder="Your name"
+          class="w-full px-4 py-2.5 border border-charcoal/20 rounded-lg bg-white text-charcoal placeholder-charcoal/40 focus:outline-none focus:border-gold transition-colors"
+        />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-charcoal/80 mb-1.5">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="your@email.com"
+          class="w-full px-4 py-2.5 border border-charcoal/20 rounded-lg bg-white text-charcoal placeholder-charcoal/40 focus:outline-none focus:border-gold transition-colors"
+        />
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium text-charcoal/80 mb-1.5">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows="5"
+          placeholder="What's on your mind? (Heretical answers welcome.)"
+          class="w-full px-4 py-2.5 border border-charcoal/20 rounded-lg bg-white text-charcoal placeholder-charcoal/40 focus:outline-none focus:border-gold transition-colors resize-y min-h-[120px]"
+        ></textarea>
+      </div>
+
+      <div class="h-captcha" data-captcha="true"></div>
+
+      <button
+        type="submit"
+        class="px-6 py-2.5 bg-gold text-charcoal font-semibold rounded-lg hover:opacity-90 transition-opacity cursor-pointer"
+      >
+        Send Message
+      </button>
+    </form>
+
+    <div id="form-success" class="hidden mt-6 p-4 bg-gold/10 border border-gold/40 rounded-lg text-charcoal">
+      Thanks for reaching out! I'll get back to you soon.
+    </div>
+    <div id="form-error" class="hidden mt-6 p-4 bg-crimson/10 border border-crimson/40 rounded-lg text-charcoal">
+      Something went wrong. Please try again or email me directly at
+      <a href="mailto:openscriptureapp@gmail.com" class="text-crimson underline">openscriptureapp@gmail.com</a>.
+    </div>
+  </div>
+</BaseLayout>
+
+<script src="https://web3forms.com/client/script.js" async defer></script>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const successMsg = document.getElementById('form-success');
+  const errorMsg = document.getElementById('form-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (res.ok && json.success) {
+        form.style.display = 'none';
+        if (successMsg) successMsg.classList.remove('hidden');
+      } else {
+        if (errorMsg) errorMsg.classList.remove('hidden');
+      }
+    } catch {
+      if (errorMsg) errorMsg.classList.remove('hidden');
+    }
+  });
+</script>
