@@ -9,6 +9,7 @@ import AnimatedCounter from './AnimatedCounter';
 type QuizState = 'answering' | 'revealing' | 'complete';
 
 const STORAGE_KEY = 'quizState';
+const OPTION5_ID = 'option5';
 
 interface SavedState {
   currentIndex: number;
@@ -31,9 +32,10 @@ export default function QuizContainer() {
         if (parsed.currentIndex < questions.length) {
           setCurrentIndex(parsed.currentIndex);
           setAnswers(parsed.answers);
-          // Count unique heresies from saved answers
+          // Count unique heresies from saved answers (skip option5)
           const uniqueHeresies = new Set<string>();
           for (const answerId of Object.values(parsed.answers)) {
+            if (answerId === OPTION5_ID) continue;
             for (const q of questions) {
               const a = q.answers.find((ans) => ans.id === answerId);
               if (a) uniqueHeresies.add(a.heresyTriggered);
@@ -78,9 +80,10 @@ export default function QuizContainer() {
     setAnswers(newAnswers);
     setState('revealing');
 
-    // Update heresy count
+    // Update heresy count (skip option5)
     const uniqueHeresies = new Set<string>();
     for (const aid of Object.values(newAnswers)) {
+      if (aid === OPTION5_ID) continue;
       for (const q of questions) {
         const a = q.answers.find((ans) => ans.id === aid);
         if (a) uniqueHeresies.add(a.heresyTriggered);
@@ -89,6 +92,14 @@ export default function QuizContainer() {
     setHeresyCount(uniqueHeresies.size);
 
     // Save progress
+    saveState(currentIndex, newAnswers);
+  };
+
+  const handleOption5 = () => {
+    setSelectedAnswer(OPTION5_ID);
+    const newAnswers = { ...answers, [currentQuestion.id]: OPTION5_ID };
+    setAnswers(newAnswers);
+    setState('revealing');
     saveState(currentIndex, newAnswers);
   };
 
@@ -101,7 +112,7 @@ export default function QuizContainer() {
       if (typeof window.trackEvent === 'function') {
         window.trackEvent('quiz_complete', {
           heresy_count: results.heresies?.length ?? 0,
-          top_heresy: results.heresies?.[0]?.name ?? 'none',
+          top_heresy: results.heresies?.[0] ?? 'none',
         });
       }
       window.location.href = '/results';
@@ -117,7 +128,8 @@ export default function QuizContainer() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const answer = selectedAnswer
+  const isOption5 = selectedAnswer === OPTION5_ID;
+  const answer = selectedAnswer && !isOption5
     ? currentQuestion.answers.find((a) => a.id === selectedAnswer)
     : null;
 
@@ -140,23 +152,36 @@ export default function QuizContainer() {
       )}
 
       {state === 'answering' && (
-        <QuestionCard question={currentQuestion} onAnswer={handleAnswer} />
+        <QuestionCard
+          question={currentQuestion}
+          onAnswer={handleAnswer}
+          onOption5={handleOption5}
+        />
       )}
 
-      {state === 'revealing' && answer && (
+      {state === 'revealing' && (
         <div>
           <QuestionCard
             question={currentQuestion}
             onAnswer={() => {}}
+            onOption5={() => {}}
             selectedId={selectedAnswer}
             disabled
           />
           <div className="mt-6">
-            <RevealCard
-              answer={answer}
-              onNext={handleNext}
-              isLastQuestion={currentIndex + 1 >= questions.length}
-            />
+            {isOption5 ? (
+              <RevealCard
+                option5Reveal={currentQuestion.option5Reveal}
+                onNext={handleNext}
+                isLastQuestion={currentIndex + 1 >= questions.length}
+              />
+            ) : answer ? (
+              <RevealCard
+                answer={answer}
+                onNext={handleNext}
+                isLastQuestion={currentIndex + 1 >= questions.length}
+              />
+            ) : null}
           </div>
         </div>
       )}

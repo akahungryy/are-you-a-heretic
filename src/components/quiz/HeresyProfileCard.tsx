@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import type { QuizResult } from '../../data/types';
 import { heresies } from '../../data/heresies';
+import { questions } from '../../data/questions';
 import AnimatedCounter from './AnimatedCounter';
 import ShareButton from './ShareButton';
 import HereticTickReact from './HereticTickReact';
@@ -39,6 +40,10 @@ export default function HeresyProfileCard() {
     'nicene-trinitarianism'
   );
   const hasSubordinationism = result.heresies.includes('subordinationism');
+
+  const option5Questions = (result.option5Questions || [])
+    .map((qId) => questions.find((q) => q.id === qId))
+    .filter(Boolean);
 
   const fadeIn = shouldReduceMotion
     ? {}
@@ -213,6 +218,33 @@ export default function HeresyProfileCard() {
         )}
       </div>
 
+      {/* Option 5 questions — topics the user didn't commit on */}
+      {option5Questions.length > 0 && (
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-charcoal">
+            Topics You Didn't Commit On
+          </h2>
+          <p className="text-sm text-charcoal/60">
+            You chose "none of these quite fit" for {option5Questions.length === 1 ? 'this question' : 'these questions'}. Here's what the church fought about:
+          </p>
+          {option5Questions.map((q) =>
+            q ? (
+              <div
+                key={q.id}
+                className="block border border-gold/20 bg-gold/5 rounded-xl p-4"
+              >
+                <h3 className="font-bold text-charcoal mb-1">
+                  {q.category}: {q.option5Reveal.title}
+                </h3>
+                <p className="text-charcoal/60 text-sm leading-relaxed">
+                  {q.option5Reveal.text.slice(0, 200)}...
+                </p>
+              </div>
+            ) : null
+          )}
+        </div>
+      )}
+
       {/* THE PAYOFF MESSAGE */}
       <motion.div
         {...fadeIn}
@@ -229,13 +261,13 @@ export default function HeresyProfileCard() {
             That's not a bug — it's the point.
           </p>
           <p className="text-parchment/70">
-            Every answer on every question has been officially condemned as
-            heretical by some council, confession, synod, or authoritative body
-            in Christian history. There is no combination of answers that escapes
-            scrutiny entirely.
+            Every answer on every question has been condemned or contested by
+            some council, confession, synod, or authoritative body in Christian
+            history. There is no combination of answers that escapes scrutiny
+            entirely.
           </p>
           <p className="text-parchment/70">
-            The words "heretical" and "orthodox" don't describe fixed truths
+            The labels "heretical" and "condemned" don't describe fixed truths
             handed down from heaven. They describe the{' '}
             <em>
               consensus of a particular community at a particular time and place
@@ -288,7 +320,7 @@ export default function HeresyProfileCard() {
             </li>
           </ul>
           <p className="text-parchment/50 text-sm italic pt-2">
-            The NT authors never used the word "orthodox." They never defined{' '}
+            The NT authors never used the word "heretical." They never defined{' '}
             <em>homoousios</em>. They never voted on whether Christ had one will
             or two. They told stories, wrote letters, sang hymns, and urged their
             communities to love each other across the deepest divisions of their

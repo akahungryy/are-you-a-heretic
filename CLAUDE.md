@@ -82,13 +82,11 @@ npm run build   # production build to dist/
 ```
 
 ## Project Docs
-Spec and prompt documents are in `project-docs/`:
+Spec and reference documents are in `project-docs/`:
 - 01: Research database (councils + heresies reference)
 - 02: Quiz design and tone progression
-- 03-07: Build prompts (sequential Claude Code instructions)
 - 08: Fact-check report (historical accuracy audit)
-- 09: HereticTick branding spec
-- 10: UI redesign prompt
 - 11: Biblical Unitarian audit report (content bias analysis from BU perspective)
 - 12: Quiz redesign spec (cut to 10 questions, Option 5, severity overhaul, impartial reveals)
-- 13: Quiz redesign Claude Code prompt
+
+Completed prompts are archived in `project-docs/archive/`.

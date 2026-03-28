@@ -8,7 +8,7 @@ export function generateShareText(result: QuizResult): string {
     : null;
 
   if (heresyCount === 0) {
-    return "I took the 'Are You a Heretic?' quiz and somehow emerged orthodox. I'm suspicious of myself.";
+    return "I took the 'Are You a Heretic?' quiz and somehow dodged every condemnation. That can't be right.";
   }
 
   const heresyName = topHeresy?.name ?? 'an ancient heresy';

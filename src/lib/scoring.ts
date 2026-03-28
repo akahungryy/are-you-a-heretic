@@ -3,12 +3,22 @@ import { questions } from '../data/questions';
 import { heresies } from '../data/heresies';
 import { councils } from '../data/councils';
 
+const OPTION5_ID = 'option5';
+
 export function calculateResults(answers: Record<number, string>): QuizResult {
   const triggeredHeresies = new Set<string>();
   const triggeredCouncils = new Set<string>();
+  const option5Questions: number[] = [];
 
   for (const [questionId, answerId] of Object.entries(answers)) {
-    const question = questions.find((q) => q.id === Number(questionId));
+    const qId = Number(questionId);
+
+    if (answerId === OPTION5_ID) {
+      option5Questions.push(qId);
+      continue;
+    }
+
+    const question = questions.find((q) => q.id === qId);
     if (!question) continue;
 
     const answer = question.answers.find((a) => a.id === answerId);
@@ -49,6 +59,7 @@ export function calculateResults(answers: Record<number, string>): QuizResult {
   return {
     answers,
     heresies: heresyList,
+    option5Questions,
     totalCouncilsAgainst: allCouncilIds.length,
     ecumenicalCouncilsAgainst: ecumenicalCouncils.length,
     antiNiceneCouncilsAgainst: antiNiceneCouncils.length,
@@ -72,8 +83,6 @@ function estimateCondemnors(heresyIds: string[]): string {
   } else if (hasTrinitarianHeresy) {
     return '~2.2 billion Christians';
   } else if (hasNiceneCondemnation) {
-    // The anti-Nicene councils no longer exist as institutions,
-    // but the Nicene position is condemned by modern Biblical Unitarians, JWs, etc.
     return '~2.4 billion Christians (today) — but the 4th-century majority would have agreed with them';
   } else if (hasChristologicalHeresy) {
     return '~1.8 billion Christians';
