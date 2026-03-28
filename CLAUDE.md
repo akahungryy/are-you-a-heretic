@@ -1,7 +1,7 @@
 # Are You a Heretic? — Project Context
 
 ## What Is This?
-An interactive theological quiz site that proves everyone is a heretic — at least by the standards of some church council. Users answer 18 questions about core Christian beliefs, and every answer triggers a historical condemnation. The tone progresses from playful to smart to thought-provoking.
+An interactive theological quiz site that shows everyone holds at least one historically condemned or contested view — by the standards of some church council. Users answer 10 questions about core Christian beliefs. Every answer reveals the historical controversy around that position. The tone is impartial and educational — the historical record speaks for itself.
 
 The site also serves as an educational resource with 31 heresy deep-dive pages and 8 SEO articles covering early church history, councils, and doctrinal controversies.
 
@@ -23,7 +23,7 @@ The site also serves as an educational resource with 31 heresy deep-dive pages a
 src/
 ├── pages/
 │   ├── index.astro          # Landing page
-│   ├── quiz.astro           # 18-question interactive quiz (React island)
+│   ├── quiz.astro           # 10-question interactive quiz (React island)
 │   ├── results.astro        # Quiz results with heresy profile
 │   ├── about.astro          # About the project
 │   ├── 404.astro            # Custom 404
@@ -48,7 +48,7 @@ src/
 │   └── heresies/            # 31 MDX heresy deep-dives
 ├── data/
 │   ├── heresies.ts          # 29 heresy records with metadata
-│   ├── questions.ts         # 18 quiz questions, 4 answers each
+│   ├── questions.ts         # 10 quiz questions, 5 answers each (Option 5 = panoramic reveal)
 │   ├── councils.ts          # 20+ councils (ecumenical, anti-Nicene, regional)
 │   └── types.ts             # TypeScript interfaces
 └── layouts/
@@ -56,17 +56,18 @@ src/
 ```
 
 ## Content Inventory
-- **Quiz**: 18 questions, every answer maps to a heresy condemnation
+- **Quiz**: 10 questions, 5 answers each (Options 1–4 + Option 5 panoramic reveal)
 - **Heresy pages**: 31 MDX files (arianism, nestorianism, docetism, modalism, pelagianism, etc.)
 - **Articles**: 8 SEO-targeted articles (trinity explained, denomination differences, early church beliefs, etc.)
 - **Councils**: 20+ councils including 13 anti-Nicene councils (335-380 AD)
 
 ## Key Design Decisions
-1. **Every answer is "wrong"** — the thesis is that everyone holds at least one historically condemned view
-2. **Progressive revelation** — after each answer, a RevealCard shows the relevant heresy, condemnation, and historical context
-3. **sessionStorage persistence** — quiz state survives page refreshes but not new sessions
-4. **React island architecture** — only the quiz is interactive; everything else is static HTML
-5. **Gold checkmark (✓) branding** — plays on "heretick" domain spelling
+1. **Every answer is condemned or debated** — only two severity labels; no answer is "orthodox"
+2. **Impartial reveals** — after each answer, a RevealCard shows the historical controversy. No gotchas, no editorializing. The historical record speaks for itself.
+3. **Option 5** — every question has a 5th option ("None of these quite fit") that reveals a panoramic view of all positions on that topic
+4. **sessionStorage persistence** — quiz state survives page refreshes but not new sessions
+5. **React island architecture** — only the quiz is interactive; everything else is static HTML
+6. **Gold checkmark (✓) branding** — plays on "heretick" domain spelling
 
 ## Known Issues
 - Semi-arianism slug mismatch: `homoiousian` in heresies.ts vs `semi-arianism` in MDX/links
@@ -89,3 +90,5 @@ Spec and prompt documents are in `project-docs/`:
 - 09: HereticTick branding spec
 - 10: UI redesign prompt
 - 11: Biblical Unitarian audit report (content bias analysis from BU perspective)
+- 12: Quiz redesign spec (cut to 10 questions, Option 5, severity overhaul, impartial reveals)
+- 13: Quiz redesign Claude Code prompt

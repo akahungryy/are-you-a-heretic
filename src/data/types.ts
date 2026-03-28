@@ -33,6 +33,10 @@ export type QuizQuestion = {
   question: string;
   tone: 'playful' | 'substantive' | 'provocative';
   answers: QuizAnswer[];
+  option5Reveal: {
+    title: string;
+    text: string;
+  };
 };
 
 export type QuizAnswer = {
@@ -41,7 +45,7 @@ export type QuizAnswer = {
   heresyTriggered: string;
   revealTitle: string;
   revealText: string;
-  severity: 'condemned' | 'suspicious' | 'technically-orthodox-but';
+  severity: 'condemned' | 'debated';
   councilIds?: string[];
   condemnedByCount?: number;
 };
@@ -49,6 +53,7 @@ export type QuizAnswer = {
 export type QuizResult = {
   answers: Record<number, string>;
   heresies: string[];
+  option5Questions: number[];
   totalCouncilsAgainst: number;
   ecumenicalCouncilsAgainst: number;
   antiNiceneCouncilsAgainst: number;
