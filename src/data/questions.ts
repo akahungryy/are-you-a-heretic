@@ -97,13 +97,13 @@ export const questions: QuizQuestion[] = [
       {
         id: 'q2b',
         text: 'A genuine human being was genuinely grieving the death of his friend.',
-        heresyTriggered: 'nestorianism',
-        revealTitle: 'Nestorianism — condemned at Ephesus (431)',
+        heresyTriggered: 'adoptionism',
+        revealTitle: 'Dynamic Monarchianism — condemned at Nicaea (325)',
         revealText:
-          'This answer emphasises the human side of Christ so strongly that the divine recedes. The Council of Ephesus (431) condemned Nestorius for separating the human and divine natures too sharply — making Christ effectively two persons cooperating rather than one unified person. To be fair, the answer as stated doesn\'t necessarily divide the natures; many Chalcedonian theologians would affirm that a genuine human was grieving. The Nestorian charge depends on whether "a human being" means the human nature alone acted, apart from the divine. The line is thinner than it looks.',
+          'Calling Jesus "a genuine human being" without qualifying his divinity is the instinct behind Dynamic Monarchianism — the view held by Paul of Samosata and Theodotus of Byzantium that Jesus was a human being whom God elevated or empowered. Modern Biblical Unitarians hold a similar position. This was condemned as early as the 3rd century and definitively at Nicaea (325). Not a Biblical Unitarian? This answer would still have got you in trouble at Ephesus in 431, where Nestorius was deposed for separating the human and divine too sharply. The council insisted: it wasn\'t "a human being" weeping — it was God-in-human-nature weeping. The distinction matters more than it sounds.',
         severity: 'condemned',
-        councilIds: ['ephesus'],
-        condemnedByCount: 1,
+        councilIds: ['nicaea-i', 'ephesus'],
+        condemnedByCount: 2,
       },
       {
         id: 'q2c',

@@ -103,6 +103,20 @@ export default function QuizContainer() {
     saveState(currentIndex, newAnswers);
   };
 
+  const handleBack = () => {
+    if (currentIndex === 0) return;
+    const prevIndex = currentIndex - 1;
+    const prevQuestion = questions[prevIndex];
+    const prevAnswerId = answers[prevQuestion.id] ?? null;
+
+    setCurrentIndex(prevIndex);
+    setSelectedAnswer(prevAnswerId);
+    setState(prevAnswerId ? 'revealing' : 'answering');
+    saveState(prevIndex, answers);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleNext = () => {
     if (currentIndex + 1 >= questions.length) {
       const results = calculateResults({ ...answers });
@@ -137,19 +151,31 @@ export default function QuizContainer() {
     <div className="max-w-2xl mx-auto px-4 py-6 md:py-10">
       <ProgressBar current={currentIndex + 1} total={questions.length} />
 
-      {/* Running heresy counter */}
-      {heresyCount > 0 && (
-        <div className="flex justify-end mb-4">
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-crimson/10 rounded-full text-sm">
-            <span className="text-crimson font-bold">
-              <AnimatedCounter target={heresyCount} />
-            </span>
-            <span className="text-crimson/70 text-xs">
-              {heresyCount === 1 ? 'heresy' : 'heresies'} triggered
-            </span>
-          </div>
+      {/* Back button + heresy counter */}
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          {currentIndex > 0 && (
+            <button
+              onClick={handleBack}
+              className="flex items-center gap-1.5 text-sm text-charcoal/50 hover:text-charcoal transition-colors cursor-pointer"
+            >
+              <span aria-hidden="true">&larr;</span> Back
+            </button>
+          )}
         </div>
-      )}
+        <div>
+          {heresyCount > 0 && (
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-crimson/10 rounded-full text-sm">
+              <span className="text-crimson font-bold">
+                <AnimatedCounter target={heresyCount} />
+              </span>
+              <span className="text-crimson/70 text-xs">
+                {heresyCount === 1 ? 'heresy' : 'heresies'} triggered
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
 
       {state === 'answering' && (
         <QuestionCard
