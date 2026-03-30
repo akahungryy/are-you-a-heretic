@@ -62,6 +62,32 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body class="min-h-screen flex flex-col bg-parchment">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-charcoal focus:rounded-lg">Skip to content</a>
+
+    <!-- Work-in-progress caveat banner -->
+    <div id="wip-banner" class="hidden bg-charcoal/90 text-parchment/90 text-sm text-center px-4 py-3 relative z-[60]" role="alert">
+      <p class="max-w-4xl mx-auto pr-8">
+        This project is a work in progress and may not fully represent the author's views. All information should be verified for accuracy.
+      </p>
+      <button id="wip-dismiss" class="absolute right-4 top-1/2 -translate-y-1/2 text-parchment/60 hover:text-parchment transition-colors" aria-label="Dismiss notice">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <script>
+      (function() {
+        const KEY = 'wip_banner_dismissed';
+        const banner = document.getElementById('wip-banner');
+        const btn = document.getElementById('wip-dismiss');
+        if (!banner || !btn) return;
+        if (!localStorage.getItem(KEY)) {
+          banner.classList.remove('hidden');
+        }
+        btn.addEventListener('click', function() {
+          localStorage.setItem(KEY, '1');
+          banner.classList.add('hidden');
+        });
+      })();
+    </script>
+
     <Header />
     <main id="main-content" class="flex-1">
       <slot />
