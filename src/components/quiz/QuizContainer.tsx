@@ -117,6 +117,26 @@ export default function QuizContainer() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleChangeAnswer = () => {
+    const newAnswers = { ...answers };
+    delete newAnswers[currentQuestion.id];
+    setAnswers(newAnswers);
+    setSelectedAnswer(null);
+    setState('answering');
+
+    // Recalculate heresy count
+    const uniqueHeresies = new Set<string>();
+    for (const aid of Object.values(newAnswers)) {
+      if (aid === OPTION5_ID) continue;
+      for (const q of questions) {
+        const a = q.answers.find((ans) => ans.id === aid);
+        if (a) uniqueHeresies.add(a.heresyTriggered);
+      }
+    }
+    setHeresyCount(uniqueHeresies.size);
+    saveState(currentIndex, newAnswers);
+  };
+
   const handleNext = () => {
     if (currentIndex + 1 >= questions.length) {
       const results = calculateResults({ ...answers });
@@ -146,6 +166,7 @@ export default function QuizContainer() {
   const answer = selectedAnswer && !isOption5
     ? currentQuestion.answers.find((a) => a.id === selectedAnswer)
     : null;
+  const isRevisiting = answers[currentQuestion.id] !== undefined && state === 'revealing';
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 md:py-10">
