@@ -7,8 +7,12 @@ import AnimatedCounter from './AnimatedCounter';
 import ShareButton from './ShareButton';
 import HereticTickReact from './HereticTickReact';
 
+type TriageRating = 'essential' | 'important' | 'secondary' | 'unsure';
+
 export default function HeresyProfileCard() {
   const [result, setResult] = useState<QuizResult | null>(null);
+  const [triageOpen, setTriageOpen] = useState(false);
+  const [triageRatings, setTriageRatings] = useState<Record<string, TriageRating>>({});
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -127,7 +131,7 @@ export default function HeresyProfileCard() {
             <em>homoousios</em> was the heresy. Athanasius was exiled five
             times. Pope Liberius was exiled under imperial pressure. Jerome wrote: "The
             whole world groaned and was astonished to find itself Arian."{' '}
-            <strong>In that era, you would have been the heretic.</strong>
+            <strong>In that era, this belief was the heresy — and its holders, the heretics.</strong>
           </p>
         </motion.div>
       )}
@@ -245,89 +249,209 @@ export default function HeresyProfileCard() {
         </div>
       )}
 
-      {/* THE PAYOFF MESSAGE */}
+      {/* REFLECTION SECTION */}
       <motion.div
         {...fadeIn}
         transition={{ delay: 0.8, duration: 0.6 }}
         className="bg-charcoal text-parchment rounded-xl p-6 md:p-10 border border-gold/10"
       >
-        <div
-          className="max-w-lg mx-auto space-y-4 text-base leading-relaxed font-content"
-        >
+        <div className="max-w-lg mx-auto space-y-5 text-base leading-relaxed font-content">
           <p className="text-gold font-bold text-lg">
             Everyone who took this quiz got flagged by someone.
           </p>
           <p className="text-parchment/80">
-            That's not a bug — it's the point.
-          </p>
-          <p className="text-parchment/70">
-            Every answer on every question has been condemned or contested by
-            some council, confession, synod, or authoritative body in Christian
-            history. There is no combination of answers that escapes scrutiny
-            entirely.
-          </p>
-          <p className="text-parchment/70">
-            The labels "heretical" and "condemned" don't describe fixed truths
-            handed down from heaven. They describe the{' '}
+            That's not a bug — it's the point. The labels "heretical" and
+            "condemned" don't describe fixed truths handed down from heaven.
+            They describe the{' '}
             <em>
               consensus of a particular community at a particular time and place
             </em>
-            . What's the accepted position in Constantinople in 381 AD is
-            heretical in Geneva in 1559. What's heretical in Orange in 529 is
-            the default assumption in most churches today.
+            . What's orthodox in Constantinople in 381 is heretical in Geneva in
+            1559. What's condemned at Orange in 529 is the default assumption in
+            most churches today. If the line keeps moving, perhaps the line was
+            never the point.
           </p>
+
+          {/* Scripture anchors */}
+          <div className="space-y-4 py-3">
+            <blockquote className="border-l-2 border-gold/40 pl-4">
+              <p className="text-parchment/80 italic">
+                "I do not ask for these only, but also for those who will believe
+                in me through their word, that they may all be one, just as you,
+                Father, are in me, and I in you, that they also may be in us, so
+                that the world may believe that you have sent me."
+              </p>
+              <cite className="text-gold/60 text-sm not-italic block mt-1">
+                — John 17:20–21
+              </cite>
+            </blockquote>
+            <blockquote className="border-l-2 border-gold/40 pl-4">
+              <p className="text-parchment/80 italic">
+                "Make every effort to keep the unity of the Spirit through the
+                bond of peace. There is one body and one Spirit — just as you
+                were called to the one hope that belongs to your call — one Lord,
+                one faith, one baptism, one God and Father of all."
+              </p>
+              <cite className="text-gold/60 text-sm not-italic block mt-1">
+                — Ephesians 4:3–6
+              </cite>
+            </blockquote>
+            <blockquote className="border-l-2 border-gold/40 pl-4">
+              <p className="text-parchment/80 italic">
+                "Do nothing from selfish ambition or conceit, but in humility
+                count others more significant than yourselves."
+              </p>
+              <cite className="text-gold/60 text-sm not-italic block mt-1">
+                — Philippians 2:3
+              </cite>
+            </blockquote>
+            <blockquote className="border-l-2 border-gold/40 pl-4">
+              <p className="text-parchment/80 italic">
+                "Bear with each other and forgive one another... And over all
+                these virtues put on love, which binds them all together in
+                perfect unity."
+              </p>
+              <cite className="text-gold/60 text-sm not-italic block mt-1">
+                — Colossians 3:13–14
+              </cite>
+            </blockquote>
+          </div>
+
+          {/* The invitation */}
           <p className="text-gold/90 font-semibold">
-            The truth has nothing to fear.
+            Which of your fellow Christians hold the views you were just
+            "condemned" for?
           </p>
           <p className="text-parchment/70">
-            If these labels shift with the centuries, maybe they were never the
-            point. The gospel invites us into a relationship with God — not into
-            a system of correct propositions. Doctrines are attempts to describe
-            something real, but they are the map, not the territory. We shouldn't
-            mistake the means for the end, or hold our version of truth so tightly
-            that we lose sight of the truth-maker himself.
+            Could you worship alongside them? Could you call them brother or
+            sister? The people sitting next to you in church hold some of these
+            same "heresies" — and they love Jesus just as faithfully as you do.
           </p>
-          <p className="text-parchment/70">
-            What the New Testament authors actually cared about most wasn't getting
-            the metaphysics exactly right — it was this:
+
+          {/* Closing */}
+          <p className="text-parchment/70 pt-2">
+            If we profess to follow Jesus as our Lord, let us put aside our
+            arguments, our arrogance, and our judgment. Let us seek truth with
+            gentleness and humility, in love and unity, as fellow followers of
+            Christ. The truth has nothing to fear from honest disagreement.
           </p>
-          <ul className="text-parchment/70 space-y-2 list-none">
-            <li>
-              <span className="text-gold mr-2">—</span>
-              <strong className="text-gold/80">Love</strong> — the greatest of
-              these (1 Cor 13:13)
-            </li>
-            <li>
-              <span className="text-gold mr-2">—</span>
-              <strong className="text-gold/80">Justice</strong> — for the
-              vulnerable, the oppressed, the forgotten (James 1:27, Matt
-              25:31-46)
-            </li>
-            <li>
-              <span className="text-gold mr-2">—</span>
-              <strong className="text-gold/80">Unity</strong> — not uniformity
-              of doctrine, but unity of purpose and love (John 17:21)
-            </li>
-            <li>
-              <span className="text-gold mr-2">—</span>
-              <strong className="text-gold/80">Humility</strong> — including
-              intellectual humility about our own certainty (Phil 2:3)
-            </li>
-            <li>
-              <span className="text-gold mr-2">—</span>
-              <strong className="text-gold/80">Relationship</strong> — knowing
-              God, not just knowing about God (John 17:3)
-            </li>
-          </ul>
-          <p className="text-parchment/50 text-sm italic pt-2">
-            The NT authors never used the word "heretical." They never defined{' '}
-            <em>homoousios</em>. They never voted on whether Christ had one will
-            or two. They told stories, wrote letters, sang hymns, and urged their
-            communities to love each other across the deepest divisions of their
-            world. The point of the gospel was always to know God — everything
-            else is conversation along the way.
-          </p>
+
+          <a
+            href="/articles/unity-in-christ"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-gold-light transition-colors mt-2"
+          >
+            Read: Unity in Christ — Why Your Heresy Doesn't Define You →
+          </a>
         </div>
+      </motion.div>
+
+      {/* THEOLOGICAL TRIAGE WIDGET */}
+      <motion.div
+        {...fadeIn}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="space-y-4"
+      >
+        <button
+          onClick={() => setTriageOpen(!triageOpen)}
+          className="w-full text-left p-5 rounded-xl border border-gold/20 bg-gold/5 hover:bg-gold/10 transition-colors cursor-pointer"
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-bold text-charcoal font-display">
+                Bonus: Where do your "heresies" actually fall?
+              </p>
+              <p className="text-sm text-charcoal/50 mt-1">
+                Rate each of your condemned positions on the theological triage spectrum
+              </p>
+            </div>
+            <span className="text-charcoal/30 text-xl">
+              {triageOpen ? '−' : '+'}
+            </span>
+          </div>
+        </button>
+
+        {triageOpen && (
+          <div className="space-y-4 p-5 rounded-xl border border-gold/20 bg-white">
+            {triggeredHeresies.map((heresy) =>
+              heresy ? (
+                <div key={heresy.id} className="space-y-2">
+                  <p className="font-semibold text-charcoal text-sm">
+                    {heresy.name}
+                    <span className="text-charcoal/40 font-normal ml-2">
+                      — {heresy.shortDescription}
+                    </span>
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {([
+                      { value: 'essential' as TriageRating, label: 'Essential', desc: 'Core to salvation' },
+                      { value: 'important' as TriageRating, label: 'Important', desc: 'Significant but not salvific' },
+                      { value: 'secondary' as TriageRating, label: 'Secondary', desc: 'Reasonable Christians disagree' },
+                      { value: 'unsure' as TriageRating, label: "I'm not sure", desc: '' },
+                    ]).map((option) => (
+                      <button
+                        key={option.value}
+                        onClick={() =>
+                          setTriageRatings((prev) => ({
+                            ...prev,
+                            [heresy.id]: option.value,
+                          }))
+                        }
+                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                          triageRatings[heresy.id] === option.value
+                            ? 'bg-gold text-charcoal shadow-sm'
+                            : 'bg-charcoal/5 text-charcoal/60 hover:bg-charcoal/10'
+                        }`}
+                        title={option.desc}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : null
+            )}
+
+            {/* Triage summary */}
+            {Object.keys(triageRatings).length === triggeredHeresies.length &&
+              triggeredHeresies.length > 0 && (
+                <div className="mt-4 p-4 rounded-lg bg-gold/8 border border-gold/20">
+                  {(() => {
+                    const secondaryCount = Object.values(triageRatings).filter(
+                      (r) => r === 'secondary' || r === 'unsure'
+                    ).length;
+                    const total = Object.keys(triageRatings).length;
+                    return (
+                      <>
+                        <p className="text-sm text-charcoal/80 leading-relaxed">
+                          You rated{' '}
+                          <strong className="text-gold">
+                            {secondaryCount} of {total}
+                          </strong>{' '}
+                          of your "condemned" positions as secondary
+                          disagreements or uncertain.
+                        </p>
+                        {secondaryCount > total / 2 && (
+                          <p className="text-sm text-charcoal/60 mt-2 italic">
+                            If most of what got you "condemned" falls in the
+                            "secondary" category — and it does — then maybe the
+                            councils were arguing about things that aren't worth
+                            dividing over. The truth has nothing to fear from
+                            honest disagreement.
+                          </p>
+                        )}
+                        <a
+                          href="/articles/unity-in-christ"
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-gold hover:text-gold-light transition-colors mt-3"
+                        >
+                          Read more about theological triage →
+                        </a>
+                      </>
+                    );
+                  })()}
+                </div>
+              )}
+          </div>
+        )}
       </motion.div>
 
       {/* Actions */}

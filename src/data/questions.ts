@@ -17,10 +17,11 @@ export const questions: QuizQuestion[] = [
         heresyTriggered: 'modalism',
         revealTitle: 'Modalism (Sabellianism) — condemned since the 3rd century',
         revealText:
-          "This is Sabellianism — one of the oldest Trinitarian heresies, condemned at the Council of Constantinople (381 AD). The water/ice/steam analogy? Also modalism. Oneness Pentecostals hold this view explicitly. Every creedal tradition since Constantinople considers it heretical. The concern: you've described one God appearing in different modes — rather than three eternal persons in relationship. The counter-argument from modalists: the word 'person' never appears in the NT, and insisting on three distinct 'persons' risks tritheism.",
+          "This is Sabellianism — one of the oldest Trinitarian heresies, condemned at the Council of Constantinople (381 AD). The water/ice/steam analogy many churches use? Also modalism. Oneness Pentecostals hold this view explicitly, and most creedal traditions since Constantinople have rejected it. The concern is that this describes one God appearing in different modes — rather than three eternal persons in relationship. The counter-argument from modalists: the word 'person' never appears in the NT, and insisting on three distinct 'persons' risks tritheism.",
         severity: 'condemned',
         councilIds: ['constantinople-i'],
         condemnedByCount: 1,
+        unityNote: 'Christians who hold this view and Christians who reject it have worshipped side by side for centuries. The question is whether the label matters more than the relationship.',
       },
       {
         id: 'q1b',
@@ -44,6 +45,7 @@ export const questions: QuizQuestion[] = [
           'constantinople-360',
         ],
         condemnedByCount: 11,
+        unityNote: 'Today\'s orthodoxy was yesterday\'s heresy. If the label can flip in a generation, perhaps what endures is not the label but the Christ behind it.',
       },
       {
         id: 'q1c',
@@ -55,6 +57,7 @@ export const questions: QuizQuestion[] = [
         severity: 'condemned',
         councilIds: ['nicaea-i', 'constantinople-i'],
         condemnedByCount: 2,
+        unityNote: 'The position that was mainstream one decade was condemned the next. If the line keeps moving, perhaps the line was never the point.',
       },
       {
         id: 'q1d',
@@ -66,6 +69,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'The honest "I don\'t know" has a long and honourable tradition. Mystery may be more faithful than false confidence — and it certainly makes for better neighbours.',
       },
     ],
     option5Reveal: {
@@ -89,10 +93,11 @@ export const questions: QuizQuestion[] = [
         heresyTriggered: 'docetism',
         revealTitle: 'Docetism — condemned at Nicaea (325) and Chalcedon (451)',
         revealText:
-          '"Demonstrating" implies performance, not genuine experience. If Jesus was demonstrating rather than experiencing, his humanity isn\'t real — it\'s a costume. This is Docetism (from the Greek dokein, "to seem"), condemned since the earliest church. 1 John 4:2–3 is likely written specifically against this view. The Gnostics found the idea of a suffering God intolerable; the church insisted on it.',
+          '"Demonstrating" implies performance, not genuine experience. This is the instinct behind Docetism (from the Greek dokein, "to seem") — the view that Jesus\'s humanity was more appearance than reality. Condemned since the earliest church, it\'s the position 1 John 4:2–3 was likely written to address. The Gnostics found the idea of a suffering God intolerable; the church insisted that genuine human experience was essential to the incarnation.',
         severity: 'condemned',
         councilIds: ['nicaea-i', 'chalcedon'],
         condemnedByCount: 2,
+        unityNote: 'The instinct behind this view — that God is too great to truly suffer — is shared by millions of sincere believers who simply struggle with what the incarnation means.',
       },
       {
         id: 'q2b',
@@ -100,10 +105,11 @@ export const questions: QuizQuestion[] = [
         heresyTriggered: 'adoptionism',
         revealTitle: 'Dynamic Monarchianism — condemned at Nicaea (325)',
         revealText:
-          'Calling Jesus "a genuine human being" without qualifying his divinity is the instinct behind Dynamic Monarchianism — the view held by Paul of Samosata and Theodotus of Byzantium that Jesus was a human being whom God elevated or empowered. Modern Biblical Unitarians hold a similar position. This was condemned as early as the 3rd century and definitively at Nicaea (325). Not a Biblical Unitarian? This answer would still have got you in trouble at Ephesus in 431, where Nestorius was deposed for separating the human and divine too sharply. The council insisted: it wasn\'t "a human being" weeping — it was God-in-human-nature weeping. The distinction matters more than it sounds.',
+          'Calling Jesus "a genuine human being" without qualifying his divinity is the instinct behind Dynamic Monarchianism — the view held by Paul of Samosata and Theodotus of Byzantium that Jesus was a human being whom God elevated or empowered. Modern Biblical Unitarians hold a similar position. This was condemned as early as the 3rd century and definitively at Nicaea (325). Even beyond strict adoptionism, this emphasis on the human would have raised concerns at Ephesus in 431, where Nestorius was deposed for separating the human and divine too sharply. The council insisted: it wasn\'t "a human being" weeping — it was God-in-human-nature weeping. The distinction matters more than it sounds.',
         severity: 'condemned',
         councilIds: ['nicaea-i', 'ephesus'],
         condemnedByCount: 2,
+        unityNote: 'Emphasising Jesus\'s humanity is the instinct of people who take the gospels seriously. The fishermen who followed him saw a man first — and discovered something more.',
       },
       {
         id: 'q2c',
@@ -115,6 +121,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'Even the "safest" answer in Christology has its opponents. If nobody\'s safe, perhaps we should extend more grace to those who land differently than we do.',
       },
       {
         id: 'q2d',
@@ -122,10 +129,11 @@ export const questions: QuizQuestion[] = [
         heresyTriggered: 'docetism',
         revealTitle: 'Docetism — condemned from the earliest church',
         revealText:
-          'If Jesus performed grief rather than felt it, his humanity is a costume — a hologram of a body housing a divine spirit. This is classic Docetism, condemned from the earliest period of Christianity. The Gnostics loved this idea. The apostle John wrote against it explicitly: "every spirit that does not confess that Jesus Christ has come in the flesh is not from God" (1 John 4:3). Yet the instinct behind this answer — that an omniscient God would not be surprised by death — is a real theological tension the early church wrestled with.',
+          'If Jesus performed grief rather than felt it, his humanity becomes appearance rather than reality. This is classic Docetism, condemned from the earliest period of Christianity. The apostle John wrote against it explicitly: "every spirit that does not confess that Jesus Christ has come in the flesh is not from God" (1 John 4:3). Yet the instinct behind this answer — that an omniscient God would not be surprised by death — is a real theological tension the early church wrestled with honestly.',
         severity: 'condemned',
         councilIds: ['nicaea-i', 'chalcedon'],
         condemnedByCount: 2,
+        unityNote: 'The tension between divine omniscience and genuine human experience is one the church has wrestled with for millennia. Struggling with it honestly is not a sign of faithlessness.',
       },
     ],
     option5Reveal: {
@@ -135,62 +143,66 @@ export const questions: QuizQuestion[] = [
   },
 
   // ──────────────────────────────────────────────────
-  // Q3 (old Q7) — Scripture
+  // Q3 — Scripture / How to Read the Bible
   // ──────────────────────────────────────────────────
   {
     id: 3,
     category: 'Scripture',
-    question: 'How do you relate to the God of the Old Testament?',
+    question: 'How should Christians read the Bible?',
     tone: 'substantive',
     answers: [
       {
         id: 'q3a',
-        text: "The OT God seems harsh and wrathful — I much prefer the loving God Jesus revealed.",
-        heresyTriggered: 'marcionism',
-        revealTitle: 'Marcionism — condemned since 144 AD',
+        text: 'Every word is directly dictated by God — inerrant, literal, and equally authoritative from Genesis to Revelation.',
+        heresyTriggered: 'biblicism',
+        revealTitle: 'Biblicism / Radical literalism — debated across traditions',
         revealText:
-          "Marcion was expelled from the church in Rome around 144 AD for teaching that the OT God was a different, inferior deity from the Father Jesus revealed. This is a gentler version, but the instinct is similar: the OT God feels uncomfortable. Marcion edited Paul's letters to remove Jewish references and rejected the entire Old Testament. The church excommunicated him — but this tension between the testaments has never fully gone away. Theologians like Walter Brueggemann argue the OT itself contains competing portraits of God, and the tension is built into the text.",
-        severity: 'condemned',
+          "Treating every passage as equally literal ignores genre, context, and the human dimension of Scripture. The early church never read Genesis 1 as a science textbook — Origen (3rd century) and Augustine (4th century) both warned against it. Jesus used parables, metaphor ('I am the door'), and hyperbole ('gouge out your eye'). Paul distinguished between his own opinion and the Lord's command (1 Cor 7:12). The NT authors themselves did not treat all Scripture as uniformly literal. Yet the instinct — 'if God wrote it, why wouldn't every word be literally true?' — is sincere and shared by millions.",
+        severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'The desire to take every word of Scripture seriously comes from a place of deep reverence. That reverence is shared across traditions, even when the reading methods differ.',
       },
       {
         id: 'q3b',
-        text: "Same God, but the OT was a different era with different rules — we've moved past that.",
+        text: 'The NT supersedes the OT — the Old Testament was for a different time and people.',
         heresyTriggered: 'marcionism',
-        revealTitle: 'Functional Marcionism — debated across traditions',
+        revealTitle: 'Functional Marcionism — condemned since 144 AD',
         revealText:
-          "The idea that God operates in different 'dispensations' has complex theological baggage. Taken too far, it functionally discards OT ethics. Many theologians call this 'functional Marcionism' — you haven't rejected the OT God in theory, but you've relegated him to an expired era. Dispensationalists formalized this into a system; covenantal theologians object that it severs continuity. The NT authors themselves struggled with this tension (Hebrews 8–10, Galatians 3) but never resolved it by declaring the OT obsolete.",
-        severity: 'debated',
+          "Marcion was expelled from the church in Rome around 144 AD for exactly this instinct — that the OT God was a different, inferior deity from the Father Jesus revealed. He edited Paul's letters to remove Jewish references and rejected the entire Old Testament. The church excommunicated him. Yet many churches practically operate this way, focusing almost exclusively on the NT. Jesus himself said he came to fulfil the law, not abolish it (Matt 5:17). Two-thirds of the Bible gets quietly set aside in practice, even by those who affirm it in theory.",
+        severity: 'condemned',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'The tension between the testaments is built into the text itself. Honest wrestling with it is not unfaithfulness — it\'s what every generation of Christians has done.',
       },
       {
         id: 'q3c',
-        text: 'The OT and NT reveal the same God — wrath and love are both present in both testaments.',
-        heresyTriggered: 'continuity-theology',
-        revealTitle: 'Continuity theology — debated between traditions',
+        text: 'The Bible is inspired but must be interpreted — some parts are culturally conditioned, and we need wisdom to know which.',
+        heresyTriggered: 'progressive-hermeneutics',
+        revealTitle: 'Progressive hermeneutics — debated across traditions',
         revealText:
-          "This is the standard position across most traditions. But it requires grappling with genuinely difficult texts — the conquest of Canaan, divine violence, the killing of firstborn children — rather than explaining them away. The moment you start saying 'well, those parts are metaphorical' or 'that reflected the culture,' you're on a spectrum toward the other answers. Gregory Boyd, an evangelical, wrote two volumes arguing that the violent OT texts don't reflect God's actual character. The debate is very much alive.",
+          "Conservative evangelicals say this opens the door to discarding anything inconvenient. If you get to decide which parts are 'cultural,' who stops you from explaining away whatever you dislike? But the church has always interpreted — Jesus reinterpreted 'an eye for an eye' in the Sermon on the Mount (Matt 5:38–39). The Jerusalem Council decided Gentiles needn't follow the whole Mosaic law (Acts 15). Paul said 'the letter kills, but the Spirit gives life' (2 Cor 3:6). The question is not whether to interpret, but where interpretation becomes revision.",
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'Almost every Christian already does this — we don\'t stone adulterers or require head coverings. The honest question isn\'t whether to interpret, but how. That conversation goes better when we\'re gentle with each other.',
       },
       {
         id: 'q3d',
-        text: "I honestly don't read the Old Testament much — the New Testament is what matters for Christians.",
-        heresyTriggered: 'marcionism',
-        revealTitle: 'Practical Marcionism — debated across traditions',
+        text: 'The Bible is a human document — inspired in places, but not fundamentally different from other great spiritual literature.',
+        heresyTriggered: 'liberal-theology',
+        revealTitle: "Liberal theology / Schleiermacher's legacy — debated across traditions",
         revealText:
-          "This doesn't reject the OT in theory, but it sets it aside in practice — a pattern Marcion would recognise. Two-thirds of the Bible goes largely unread. Jesus quoted it constantly. Paul built his theology on it. The early church fought Marcion precisely to keep it. Yet many modern Christians live in this answer without realising it echoes a 2nd-century controversy. Some scholars argue that the church's lectionary system, which skips the most difficult OT passages, quietly reinforces this tendency.",
+          "Friedrich Schleiermacher (19th century) reframed Christianity around religious experience rather than doctrinal authority. This undermines biblical authority as every major tradition understands it — Catholic, Orthodox, and Protestant all affirm Scripture as uniquely inspired. Yet critical scholarship has shown the Bible is genuinely a collection of human writings with human fingerprints: contradictions, editorial layers, evolving theology. The tension between 'inspired' and 'human' is real. 2 Timothy 3:16 says 'all Scripture is God-breathed'; 2 Peter 1:21 says writers 'spoke from God.' The NT authors clearly viewed their scriptures as more than merely human — but they also knew they were writing letters, not dictating eternal decrees.",
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'Taking the Bible\'s human dimensions seriously doesn\'t have to mean dismissing its divine ones. The tension between "inspired" and "human" is one every honest reader encounters.',
       },
     ],
     option5Reveal: {
-      title: 'The Old Testament God: a tension as old as Christianity',
-      text: 'From the very beginning, Christians have struggled with the God of the Old Testament. Marcion (c. 144 AD) solved the problem by cutting the OT entirely — two different Gods, one wrathful, one loving. The church rejected him but never fully resolved the underlying tension. Dispensationalists organize the Bible into discrete eras with different rules. Covenantal theologians insist on continuity. Gregory Boyd argues the violent texts are a "cruciform" reinterpretation problem. The NT itself is ambivalent: Jesus affirms the law (Matt 5:17–18) but also appears to override it (Matt 5:38–39). Paul declares the law "holy" (Rom 7:12) and also says Christians have "died to the law" (Rom 7:4). Every tradition handles this tension differently, and none has made it disappear.',
+      title: 'How to read the Bible: the argument behind every argument',
+      text: 'Every doctrinal debate eventually becomes a debate about how to read Scripture. Radical literalists say every word is equally authoritative — but Origen and Augustine warned against reading Genesis as science in the 3rd and 4th centuries. Marcion (144 AD) cut the OT entirely; the church expelled him but never resolved the OT tension. Progressive interpreters say cultural context matters — but critics ask who decides which parts are "cultural." Liberal theologians following Schleiermacher treat the Bible as a human document with divine touches — but the NT authors clearly saw Scripture as more than human. The church has always interpreted: Jesus reinterpreted the law (Matt 5), Paul distinguished his opinion from God\'s command (1 Cor 7:12), and the Jerusalem Council set aside circumcision for Gentiles (Acts 15). The question has never been whether to interpret, but who has the authority to do it — and that question leads straight back to the debates about church authority, tradition, and sola scriptura.',
     },
   },
 
@@ -213,6 +225,7 @@ export const questions: QuizQuestion[] = [
         severity: 'condemned',
         councilIds: ['nicaea-ii'],
         condemnedByCount: 1,
+        unityNote: 'Most Protestants unknowingly hold a position an ecumenical council condemned — and still love Jesus faithfully. The label hasn\'t changed their heart.',
       },
       {
         id: 'q4b',
@@ -224,6 +237,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'Catholics, Orthodox, and Protestants have worshipped together for centuries despite landing on opposite sides of this question. The image on the wall matters less than the love in the room.',
       },
       {
         id: 'q4c',
@@ -235,6 +249,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'When every side has concerns, it usually means we\'re all grasping at something bigger than any single tradition can contain.',
       },
       {
         id: 'q4d',
@@ -246,6 +261,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'People have died on both sides of this debate. Perhaps the lesson is not which side was right, but that killing each other over church decor was always the greater sin.',
       },
     ],
     option5Reveal: {
@@ -273,6 +289,7 @@ export const questions: QuizQuestion[] = [
         severity: 'condemned',
         councilIds: ['lateran-iv-1215'],
         condemnedByCount: 1,
+        unityNote: 'Catholics and Protestants share the same meal, read the same words of institution, and honour the same Lord — even though they disagree about what happens to the bread.',
       },
       {
         id: 'q5b',
@@ -284,6 +301,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'The NT never explains the mechanism. If Paul didn\'t specify it, maybe the mystery is the point — and the shared table matters more than the shared metaphysics.',
       },
       {
         id: 'q5c',
@@ -291,10 +309,11 @@ export const questions: QuizQuestion[] = [
         heresyTriggered: 'memorialism',
         revealTitle: 'Memorialism — condemned at Trent and by Luther at Marburg (1529)',
         revealText:
-          "Most Baptists and many evangelicals hold this view. But Luther called Zwingli a heretic to his face at the Marburg Colloquy (1529). The Council of Trent anathematized the denial of real presence. The Eastern Orthodox call it a departure from 2,000 years of church teaching. You're in the company of most American churchgoers — and condemned by most of church history. Zwingli cited 'do this in remembrance of me' (Luke 22:19); his opponents cited 'this IS my body' (Matt 26:26).",
+          "Most Baptists and many evangelicals hold this view — it's the most common position in American churches today. But Luther called Zwingli a heretic to his face at the Marburg Colloquy (1529). The Council of Trent anathematized the denial of real presence. The Eastern Orthodox call it a departure from 2,000 years of church teaching. This is one of those cases where what most churchgoers believe and what most of church history teaches don't line up. Zwingli cited 'do this in remembrance of me' (Luke 22:19); his opponents cited 'this IS my body' (Matt 26:26).",
         severity: 'condemned',
         councilIds: ['trent', 'marburg-1529'],
         condemnedByCount: 2,
+        unityNote: 'Millions of faithful Christians take communion this way every Sunday, remembering Christ\'s sacrifice with genuine devotion. The love at the table is the same, whatever the theology behind it.',
       },
       {
         id: 'q5d',
@@ -306,6 +325,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'Sensing something sacred without being able to explain it may be closer to the original experience of the upper room than any systematic theology.',
       },
     ],
     option5Reveal: {
@@ -333,6 +353,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'Christians who hold every view of hell — eternal torment, annihilation, eventual restoration — all do so because they\'re trying to take both God\'s justice and God\'s love seriously.',
       },
       {
         id: 'q6b',
@@ -344,6 +365,7 @@ export const questions: QuizQuestion[] = [
         severity: 'condemned',
         councilIds: ['lateran-v-1513'],
         condemnedByCount: 1,
+        unityNote: 'John Stott — one of the most respected evangelicals of the 20th century — held this view. If it didn\'t disqualify him from faithful service, perhaps the label matters less than the life.',
       },
       {
         id: 'q6c',
@@ -355,6 +377,7 @@ export const questions: QuizQuestion[] = [
         severity: 'condemned',
         councilIds: ['constantinople-553-origen'],
         condemnedByCount: 1,
+        unityNote: 'Gregory of Nyssa helped define the Trinity and held this view. If he could be a pillar of orthodoxy and a universalist, perhaps our categories are less tidy than we think.',
       },
       {
         id: 'q6d',
@@ -366,6 +389,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'C.S. Lewis — beloved by evangelicals worldwide — described hell in almost exactly these terms. If the label didn\'t disqualify Lewis, perhaps it shouldn\'t disqualify you.',
       },
     ],
     option5Reveal: {
@@ -393,6 +417,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'No ecumenical council has ever defined an official atonement theory. If the church has never settled this, perhaps we can hold our preferred theory with a little more humility.',
       },
       {
         id: 'q7b',
@@ -404,6 +429,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'This was the dominant view for over a thousand years. The NT uses legal, military, and relational language for the cross — perhaps each theory captures a facet of something too big for any single framework.',
       },
       {
         id: 'q7c',
@@ -415,6 +441,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'Seeing the cross as the ultimate act of love is not wrong — it may just be incomplete. Christians who emphasise different dimensions of the same event can enrich each other rather than condemn each other.',
       },
       {
         id: 'q7d',
@@ -426,6 +453,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'Every atonement theory captures part of the truth; none captures all of it. The East and West have worshipped the same crucified Christ while explaining the cross differently for 2,000 years.',
       },
     ],
     option5Reveal: {
@@ -453,6 +481,7 @@ export const questions: QuizQuestion[] = [
         severity: 'condemned',
         councilIds: ['orange'],
         condemnedByCount: 1,
+        unityNote: 'Most evangelicals unknowingly hold a view condemned in 529 AD — and still love Jesus faithfully. The label hasn\'t changed their heart.',
       },
       {
         id: 'q8b',
@@ -464,6 +493,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'Calvinists and Arminians have served together in churches, missions, and movements for centuries. The grace-vs-freedom debate is real, but it has never prevented shared worship or shared love.',
       },
       {
         id: 'q8c',
@@ -475,6 +505,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'Over a billion Catholics and Orthodox Christians hold this view. If grace-enabled cooperation is good enough for the oldest traditions in Christianity, perhaps the disagreement is more about emphasis than substance.',
       },
       {
         id: 'q8d',
@@ -486,6 +517,7 @@ export const questions: QuizQuestion[] = [
         severity: 'condemned',
         councilIds: ['carthage', 'ephesus'],
         condemnedByCount: 2,
+        unityNote: 'Even Pelagius raised real questions about human responsibility that the church has never fully resolved. The tension between grace and effort runs through the NT itself.',
       },
     ],
     option5Reveal: {
@@ -513,6 +545,7 @@ export const questions: QuizQuestion[] = [
         severity: 'condemned',
         councilIds: ['trent'],
         condemnedByCount: 1,
+        unityNote: 'Over 800 million Protestants hold a view that Trent anathematised. Catholics and Protestants disagree on authority — but they share the same Scriptures and the same Lord.',
       },
       {
         id: 'q9b',
@@ -524,6 +557,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'The NT commends both Scripture and tradition. If the apostles valued both, perhaps the Protestant-Catholic argument is less about who\'s right and more about where the emphasis falls.',
       },
       {
         id: 'q9c',
@@ -535,6 +569,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'Every Christian uses Scripture, tradition, reason, and experience whether they admit it or not. Honesty about our sources might be the beginning of better conversations across traditions.',
       },
       {
         id: 'q9d',
@@ -546,6 +581,7 @@ export const questions: QuizQuestion[] = [
         severity: 'condemned',
         councilIds: ['constantinople-i'],
         condemnedByCount: 1,
+        unityNote: 'The NT itself warns against quenching the Spirit. The boundary between holy boldness and dangerous presumption is one the church has always had to navigate together, not alone.',
       },
     ],
     option5Reveal: {
@@ -573,6 +609,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'The pastoral weight of this question — infants, the unreached, those born before Christ — is carried by every tradition. The disagreement reflects the depth of the concern, not a lack of faith.',
       },
       {
         id: 'q10b',
@@ -584,6 +621,7 @@ export const questions: QuizQuestion[] = [
         severity: 'debated',
         councilIds: [],
         condemnedByCount: 0,
+        unityNote: 'C.S. Lewis, Vatican II, and many beloved theologians lean toward this view. If God\'s salvific will is broader than human geography, perhaps our categories should be too.',
       },
       {
         id: 'q10c',
@@ -595,6 +633,7 @@ export const questions: QuizQuestion[] = [
         severity: 'condemned',
         councilIds: ['carthage', 'ephesus'],
         condemnedByCount: 2,
+        unityNote: 'The question behind this answer — "Is a just God going to condemn billions for their geography?" — is one every tradition struggles with. The discomfort is shared, even when the conclusions differ.',
       },
       {
         id: 'q10d',
@@ -606,6 +645,7 @@ export const questions: QuizQuestion[] = [
         severity: 'condemned',
         councilIds: ['constantinople-553-origen'],
         condemnedByCount: 1,
+        unityNote: 'The hope that love wins in the end is not a sign of weak faith — it may be a sign of taking God\'s love more seriously than God\'s wrath. The argument refuses to die because the hope refuses to die.',
       },
     ],
     option5Reveal: {

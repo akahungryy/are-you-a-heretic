@@ -18,6 +18,44 @@ const allArticles = await getCollection('articles');
 const relatedArticles = allArticles.filter(
   (article) => article.data.relatedHeresies?.includes(entry.id)
 );
+
+// Christos Project cross-links
+const christosLinks: Record<string, { path: string; title: string }[]> = {
+  modalism: [{ path: '/concepts/trinitarian-development', title: 'Trinitarian Development' }],
+  'nicene-trinitarianism': [
+    { path: '/concepts/trinitarian-development', title: 'Trinitarian Development' },
+    { path: '/concepts/councils', title: 'The Councils' },
+  ],
+  subordinationism: [
+    { path: '/passages/john-14-28', title: 'John 14:28 — "The Father is greater than I"' },
+    { path: '/concepts/pre-existence', title: 'Pre-existence of Christ' },
+    { path: '/concepts/unitarianism-history', title: 'History of Unitarianism' },
+  ],
+  arianism: [
+    { path: '/passages/col-1-15', title: 'Colossians 1:15 — "Firstborn of all creation"' },
+    { path: '/concepts/pre-existence', title: 'Pre-existence of Christ' },
+    { path: '/passages/john-1-1', title: 'John 1:1 — "The Word was God"' },
+  ],
+  adoptionism: [
+    { path: '/concepts/son-of-god', title: 'Son of God' },
+    { path: '/passages/acts-2-22', title: 'Acts 2:22 — "A man attested by God"' },
+    { path: '/concepts/unitarianism-history', title: 'History of Unitarianism' },
+  ],
+  docetism: [{ path: '/concepts/two-natures', title: 'The Two Natures of Christ' }],
+  eutychianism: [{ path: '/concepts/two-natures', title: 'The Two Natures of Christ' }],
+  nestorianism: [{ path: '/concepts/two-natures', title: 'The Two Natures of Christ' }],
+  anomoeanism: [{ path: '/concepts/trinitarian-development', title: 'Trinitarian Development' }],
+  homoianism: [
+    { path: '/concepts/councils', title: 'The Councils' },
+    { path: '/concepts/trinitarian-development', title: 'Trinitarian Development' },
+  ],
+  'semi-arianism': [{ path: '/concepts/trinitarian-development', title: 'Trinitarian Development' }],
+  efs: [
+    { path: '/passages/1-cor-15-24', title: '1 Cor 15:24 — "Then the end will come"' },
+    { path: '/passages/john-14-28', title: 'John 14:28 — "The Father is greater than I"' },
+  ],
+};
+const heresyChristosLinks = christosLinks[entry.id] || [];
 ---
 
 <ContentLayout title={entry.data.title} description={entry.data.shortDescription}>
@@ -94,6 +132,33 @@ const relatedArticles = allArticles.filter(
               {article.data.title}
             </span>
             <p class="text-charcoal/50 text-sm mt-1">{article.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Christos Project links -->
+  {heresyChristosLinks.length > 0 && (
+    <div class="mt-8 pt-8 border-t border-charcoal/10">
+      <h2 class="text-xl font-bold text-charcoal mb-4" style="font-family: 'Playfair Display', Georgia, serif;">
+        Explore on Christos Project
+      </h2>
+      <p class="text-sm text-charcoal/50 mb-3">
+        Deeper scholarship on the biblical and historical background:
+      </p>
+      <div class="grid gap-3">
+        {heresyChristosLinks.map((link: { path: string; title: string }) => (
+          <a
+            href={`https://christosproject.com${link.path}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-between p-4 bg-white border border-charcoal/10 rounded-lg hover:border-gold hover:shadow-sm transition-all group"
+          >
+            <span class="font-semibold text-charcoal group-hover:text-gold transition-colors">
+              {link.title}
+            </span>
+            <span class="text-charcoal/30 group-hover:text-gold transition-colors text-sm">↗</span>
           </a>
         ))}
       </div>

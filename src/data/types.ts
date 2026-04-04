@@ -48,6 +48,7 @@ export type QuizAnswer = {
   severity: 'condemned' | 'debated';
   councilIds?: string[];
   condemnedByCount?: number;
+  unityNote?: string;
 };
 
 export type QuizResult = {

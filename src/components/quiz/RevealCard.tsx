@@ -15,6 +15,52 @@ const heresyArticleMap: Record<string, { slug: string; title: string }> = {
   docetism: { slug: 'what-did-early-christians-believe', title: 'What Did Early Christians Actually Believe?' },
 };
 
+// Static mapping: heresy ID → Christos Project deep-dive links
+const christosLinkMap: Record<string, { path: string; title: string }[]> = {
+  modalism: [
+    { path: '/concepts/trinitarian-development', title: 'Trinitarian Development' },
+  ],
+  'nicene-trinitarianism': [
+    { path: '/concepts/trinitarian-development', title: 'Trinitarian Development' },
+    { path: '/concepts/councils', title: 'The Councils' },
+  ],
+  subordinationism: [
+    { path: '/passages/john-14-28', title: 'John 14:28 — "The Father is greater than I"' },
+    { path: '/concepts/pre-existence', title: 'Pre-existence of Christ' },
+  ],
+  arianism: [
+    { path: '/passages/col-1-15', title: 'Colossians 1:15 — "Firstborn of all creation"' },
+    { path: '/passages/john-1-1', title: 'John 1:1 — "The Word was God"' },
+  ],
+  adoptionism: [
+    { path: '/concepts/son-of-god', title: 'Son of God' },
+    { path: '/passages/acts-2-22', title: 'Acts 2:22 — "A man attested by God"' },
+  ],
+  docetism: [
+    { path: '/concepts/two-natures', title: 'The Two Natures of Christ' },
+  ],
+  eutychianism: [
+    { path: '/concepts/two-natures', title: 'The Two Natures of Christ' },
+  ],
+  nestorianism: [
+    { path: '/concepts/two-natures', title: 'The Two Natures of Christ' },
+  ],
+  anomoeanism: [
+    { path: '/concepts/trinitarian-development', title: 'Trinitarian Development' },
+  ],
+  homoianism: [
+    { path: '/concepts/councils', title: 'The Councils' },
+    { path: '/concepts/trinitarian-development', title: 'Trinitarian Development' },
+  ],
+  'semi-arianism': [
+    { path: '/concepts/trinitarian-development', title: 'Trinitarian Development' },
+  ],
+  efs: [
+    { path: '/passages/1-cor-15-24', title: '1 Cor 15:24 — "Then the end will come"' },
+    { path: '/passages/john-14-28', title: 'John 14:28 — "The Father is greater than I"' },
+  ],
+};
+
 interface Props {
   answer?: QuizAnswer;
   option5Reveal?: { title: string; text: string };
@@ -162,6 +208,15 @@ export default function RevealCard({ answer, option5Reveal, onNext, isLastQuesti
         </div>
       )}
 
+      {/* Unity note */}
+      {answer.unityNote && (
+        <div className="mb-5 p-4 rounded-lg bg-gold/8 border border-gold/20">
+          <p className="text-sm text-charcoal/70 italic leading-relaxed">
+            {answer.unityNote}
+          </p>
+        </div>
+      )}
+
       {/* Action links */}
       <div className="flex flex-wrap items-center gap-3">
         <button
@@ -198,6 +253,26 @@ export default function RevealCard({ answer, option5Reveal, onNext, isLastQuesti
           </button>
         )}
       </div>
+
+      {/* Christos Project links */}
+      {answer.heresyTriggered && christosLinkMap[answer.heresyTriggered] && (
+        <div className="mt-4 pt-3 border-t border-charcoal/10">
+          <p className="text-xs text-charcoal/40 mb-1.5">Explore on Christos Project:</p>
+          <div className="flex flex-wrap gap-2">
+            {christosLinkMap[answer.heresyTriggered].map((link) => (
+              <a
+                key={link.path}
+                href={`https://christosproject.com${link.path}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-charcoal/50 hover:text-gold underline underline-offset-2 transition-colors"
+              >
+                {link.title} ↗
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 }
