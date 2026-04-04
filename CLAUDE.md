@@ -88,5 +88,15 @@ Spec and reference documents are in `project-docs/`:
 - 08: Fact-check report (historical accuracy audit)
 - 11: Biblical Unitarian audit report (content bias analysis from BU perspective)
 - 12: Quiz redesign spec (cut to 10 questions, Option 5, severity overhaul, impartial reveals)
+- 14: Site intent audit (2026-04-05) — comprehensive audit of site vs. unity intent
 
 Completed prompts are archived in `project-docs/archive/`.
+
+**Pending (prompts 14a–14f):** Site intent audit implementation. Six Claude Code prompts addressing:
+- 14a: Quiz UX (clear/change answers, opening framing paragraph, persistent unity section)
+- 14b: Unity article (MDX) + unity notes on all 40 reveal texts
+- 14c: Q3 redesign (replace Marcionism catch-all with 4 distinct Scripture heresies)
+- 14d: Christos project cross-links (12 heresy pages + RevealCard links)
+- 14e: Results page overhaul (reflection with scriptures + theological triage widget)
+- 14f: Tone audit pass on all reveal texts
+Execute in order (14a → 14f). See `project-docs/prompt-14*.md`.
