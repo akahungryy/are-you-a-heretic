@@ -20,9 +20,10 @@ interface Props {
   option5Reveal?: { title: string; text: string };
   onNext: () => void;
   isLastQuestion?: boolean;
+  onChangeAnswer?: () => void;
 }
 
-export default function RevealCard({ answer, option5Reveal, onNext, isLastQuestion }: Props) {
+export default function RevealCard({ answer, option5Reveal, onNext, isLastQuestion, onChangeAnswer }: Props) {
   const shouldReduceMotion = useReducedMotion();
 
   // Option 5 panoramic reveal
@@ -57,6 +58,14 @@ export default function RevealCard({ answer, option5Reveal, onNext, isLastQuesti
           >
             {isLastQuestion ? 'See My Results' : 'Next Question'}
           </button>
+          {onChangeAnswer && (
+            <button
+              onClick={onChangeAnswer}
+              className="text-sm text-charcoal/50 hover:text-charcoal underline underline-offset-2 transition-colors cursor-pointer"
+            >
+              Change my answer
+            </button>
+          )}
         </div>
       </motion.div>
     );
@@ -178,6 +187,15 @@ export default function RevealCard({ answer, option5Reveal, onNext, isLastQuesti
           >
             Read: {heresyArticleMap[answer.heresyTriggered].title}
           </a>
+        )}
+
+        {onChangeAnswer && (
+          <button
+            onClick={onChangeAnswer}
+            className="text-sm text-charcoal/50 hover:text-charcoal underline underline-offset-2 transition-colors cursor-pointer"
+          >
+            Change my answer
+          </button>
         )}
       </div>
     </motion.div>

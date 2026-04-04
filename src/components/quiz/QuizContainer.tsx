@@ -221,12 +221,14 @@ export default function QuizContainer() {
                 option5Reveal={currentQuestion.option5Reveal}
                 onNext={handleNext}
                 isLastQuestion={currentIndex + 1 >= questions.length}
+                onChangeAnswer={isRevisiting ? handleChangeAnswer : undefined}
               />
             ) : answer ? (
               <RevealCard
                 answer={answer}
                 onNext={handleNext}
                 isLastQuestion={currentIndex + 1 >= questions.length}
+                onChangeAnswer={isRevisiting ? handleChangeAnswer : undefined}
               />
             ) : null}
           </div>

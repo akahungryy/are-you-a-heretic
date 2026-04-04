@@ -5,6 +5,43 @@ import QuizContainer from '../components/quiz/QuizContainer';
 
 <BaseLayout title="Am I a Heretic? Take the Quiz" description="Find out which church councils would condemn your beliefs. Every answer triggers a historical condemnation — there is no safe option. A theology quiz 2000 years in the making.">
   <div class="py-8">
+    {/* Opening framing paragraph */}
+    <div class="max-w-2xl mx-auto px-4 mb-6">
+      <p class="text-charcoal/70 leading-relaxed text-base italic">
+        This quiz will show you what 2,000 years of church councils, confessions, and creeds make of your beliefs. But here's the thing: everyone who takes it gets flagged. The point isn't to condemn — it's to remind us that we're all in this together. If every Christian is someone else's heretic, maybe we should hold our labels more lightly and hold each other more tightly.
+      </p>
+    </div>
+
     <QuizContainer client:load />
+
+    {/* Persistent unity section */}
+    <div class="max-w-2xl mx-auto px-4 mt-12 mb-8">
+      <div class="rounded-xl border border-gold/30 bg-gold/5 p-6 md:p-8">
+        <h3 class="text-lg font-bold text-charcoal mb-3 font-display">Unity in Christ</h3>
+        <p class="text-charcoal/70 leading-relaxed text-sm mb-4">
+          Whatever this quiz reveals about your beliefs, remember: the earliest Christians didn't agree on everything either — and Jesus prayed not for their doctrinal uniformity, but for their unity. The labels change. The Christ who holds us together doesn't.
+        </p>
+        <div class="space-y-2 mb-4">
+          <blockquote class="text-sm text-charcoal/60 italic border-l-2 border-gold/40 pl-3">
+            "I pray that they will all be one, just as you and I are one — as you are in me, Father, and I am in you."
+            <span class="block text-xs mt-1 not-italic text-charcoal/40">— John 17:21</span>
+          </blockquote>
+          <blockquote class="text-sm text-charcoal/60 italic border-l-2 border-gold/40 pl-3">
+            "Make every effort to keep the unity of the Spirit through the bond of peace."
+            <span class="block text-xs mt-1 not-italic text-charcoal/40">— Ephesians 4:3</span>
+          </blockquote>
+          <blockquote class="text-sm text-charcoal/60 italic border-l-2 border-gold/40 pl-3">
+            "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves."
+            <span class="block text-xs mt-1 not-italic text-charcoal/40">— Philippians 2:3</span>
+          </blockquote>
+        </div>
+        <a
+          href="/articles/unity-in-christ"
+          class="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-gold-light transition-colors"
+        >
+          Read: Unity in Christ — Why Your Heresy Doesn't Define You →
+        </a>
+      </div>
+    </div>
   </div>
 </BaseLayout>
