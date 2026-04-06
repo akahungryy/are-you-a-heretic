@@ -2,7 +2,7 @@
 
 An interactive theological quiz that proves everyone is a heretic — at least by the standards of some church council.
 
-Answer 18 questions about core Christian beliefs. Every answer triggers a historical condemnation. Explore 31 heresy deep-dives and 8 articles on early church history.
+Answer 10 questions about core Christian beliefs. Every answer triggers a historical condemnation. Explore 31 heresy deep-dives and 8 articles on early church history.
 
 ## Quick Start
 
@@ -20,7 +20,7 @@ Astro 6, React 19 (quiz island), TypeScript, Tailwind CSS 4, Framer Motion, MDX 
 
 ## Structure
 
-- `/src/pages/quiz.astro` — Interactive 18-question quiz (React island)
+- `/src/pages/quiz.astro` — Interactive 10-question quiz (React island)
 - `/src/pages/explore/` — 31 heresy deep-dive pages (MDX)
 - `/src/pages/articles/` — 8 SEO articles (MDX)
 - `/src/data/` — Quiz questions, heresy records, council data
