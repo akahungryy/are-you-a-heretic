@@ -30,7 +30,7 @@ const publishDateFormatted = entry.data.publishDate.toLocaleDateString('en-US', 
 });
 ---
 
-<ContentLayout title={entry.data.title} description={entry.data.description}>
+<ContentLayout title={entry.data.title} description={entry.data.description} ogType="article">
   <meta data-pagefind-meta="section:Articles" />
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -39,9 +39,19 @@ const publishDateFormatted = entry.data.publishDate.toLocaleDateString('en-US', 
       'headline': entry.data.title,
       'description': entry.data.description,
       'datePublished': entry.data.publishDate.toISOString(),
+      'dateModified': entry.data.publishDate.toISOString(),
       'author': { '@type': 'Organization', 'name': 'Are You a Heretic?' },
       'publisher': { '@type': 'Organization', 'name': 'Are You a Heretic?' },
       'url': `https://areyouaheretic.net/articles/${entry.id}`,
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://areyouaheretic.net/' },
+        { '@type': 'ListItem', 'position': 2, 'name': 'Articles', 'item': 'https://areyouaheretic.net/articles/' },
+        { '@type': 'ListItem', 'position': 3, 'name': entry.data.title, 'item': `https://areyouaheretic.net/articles/${entry.id}` },
+      ]
     })} />
   </Fragment>
 

@@ -5,12 +5,13 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  ogType?: string;
 }
 
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage, ogType } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} ogImage={ogImage}>
+<BaseLayout title={title} description={description} ogImage={ogImage} ogType={ogType}>
   <slot name="head" slot="head" />
   <article class="max-w-[720px] mx-auto px-4 py-12">
     <slot />

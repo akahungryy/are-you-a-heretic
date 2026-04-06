@@ -21,11 +21,127 @@ const featuredArticles = allArticles
       "url": "https://areyouaheretic.net",
       "description": "An interactive quiz exploring 2,000 years of Christian doctrinal controversy through the lens of church councils and heresy.",
     })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is universalism a heresy?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The Second Council of Constantinople (553 AD) condemned it. But Origen taught it, Gregory of Nyssa defended it, and it's making a serious comeback in modern theology. The early church was far less settled on this than you'd think." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Arianism really a heresy?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nicaea (325 AD) condemned it — but for the next 40 years, anti-Nicene theology was the official position of the Roman Empire. Hundreds of bishops rejected the Nicene formula. The 'obvious' answer wasn't obvious at all." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the doctrine of the Trinity heretical?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It was, officially, for twenty years. From 341 to 381 AD, the Nicene Trinitarian formula was condemned across the Roman Empire. The belief most Christians treat as non-negotiable was once the heretical position." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is infant baptism biblical?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Catholics and Reformers say yes. Baptists and Anabaptists say no — and people were executed for that view. The Anabaptists were condemned at Augsburg (1530), but believer's baptism is now the majority practice worldwide." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is believing in predestination heretical?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The opposite view is. The Council of Orange (529 AD) condemned the idea that humans can choose God without grace — that's Pelagianism. But strong predestination was condemned at Arles (473 AD). Every position on the spectrum has been condemned by someone." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is sola scriptura heretical?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The Council of Trent (1545) condemned it. But it's the foundation of Protestantism — and half the world's Christians hold to it in some form. Meanwhile, Catholics consider the Protestant rejection of tradition heretical. Both sides have councils backing them up." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is speaking in tongues still real?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Cessationists say the miraculous gifts stopped with the apostles. Continuationists — now the fastest-growing segment of global Christianity — say they didn't. The early church condemned Montanism for claiming new prophecy, but never ruled the gifts had ceased." }
+        }
+      ]
+    })} />
   </Fragment>
 
   <HeroSection />
 
-  <section class="py-12 md:py-16 px-4 bg-white/50">
+  <section class="py-12 md:py-16 px-4 bg-white/50" id="faq">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-bold mb-3 text-center text-charcoal">
+        Is That Belief Heretical?
+      </h2>
+      <p class="text-charcoal/50 text-center mb-10 font-content">It depends who you ask — and when you ask them.</p>
+      <div class="space-y-6">
+        <details class="group bg-white rounded-xl border border-charcoal/10 overflow-hidden">
+          <summary class="flex items-center justify-between cursor-pointer px-6 py-4 font-bold text-charcoal hover:text-crimson transition-colors">
+            <span>Is universalism a heresy?</span>
+            <svg class="w-5 h-5 text-charcoal/40 group-open:rotate-180 transition-transform shrink-0 ml-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-charcoal/70 font-content">
+            <p>The Second Council of Constantinople (553 AD) condemned it. But Origen taught it, Gregory of Nyssa defended it, and it's making a serious comeback in modern theology. The early church was far less settled on this than you'd think. <a href="/explore/universalism" class="text-crimson hover:underline">Explore universalism →</a></p>
+          </div>
+        </details>
+        <details class="group bg-white rounded-xl border border-charcoal/10 overflow-hidden">
+          <summary class="flex items-center justify-between cursor-pointer px-6 py-4 font-bold text-charcoal hover:text-crimson transition-colors">
+            <span>Is Arianism really a heresy?</span>
+            <svg class="w-5 h-5 text-charcoal/40 group-open:rotate-180 transition-transform shrink-0 ml-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-charcoal/70 font-content">
+            <p>Nicaea (325 AD) condemned it — but for the next 40 years, anti-Nicene theology was the official position of the Roman Empire. Hundreds of bishops rejected the Nicene formula. The "obvious" answer wasn't obvious at all. <a href="/explore/arianism" class="text-crimson hover:underline">Explore Arianism →</a></p>
+          </div>
+        </details>
+        <details class="group bg-white rounded-xl border border-charcoal/10 overflow-hidden">
+          <summary class="flex items-center justify-between cursor-pointer px-6 py-4 font-bold text-charcoal hover:text-crimson transition-colors">
+            <span>Is the doctrine of the Trinity heretical?</span>
+            <svg class="w-5 h-5 text-charcoal/40 group-open:rotate-180 transition-transform shrink-0 ml-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-charcoal/70 font-content">
+            <p>It was, officially, for twenty years. From 341 to 381 AD, the Nicene Trinitarian formula was condemned across the Roman Empire. The belief most Christians treat as non-negotiable was once the heretical position. <a href="/explore/nicene-trinitarianism" class="text-crimson hover:underline">Explore Nicene Trinitarianism →</a></p>
+          </div>
+        </details>
+        <details class="group bg-white rounded-xl border border-charcoal/10 overflow-hidden">
+          <summary class="flex items-center justify-between cursor-pointer px-6 py-4 font-bold text-charcoal hover:text-crimson transition-colors">
+            <span>Is infant baptism biblical?</span>
+            <svg class="w-5 h-5 text-charcoal/40 group-open:rotate-180 transition-transform shrink-0 ml-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-charcoal/70 font-content">
+            <p>Catholics and Reformers say yes. Baptists and Anabaptists say no — and people were executed for that view. The Anabaptists were condemned at Augsburg (1530), but believer's baptism is now the majority practice worldwide. <a href="/explore/credobaptism" class="text-crimson hover:underline">Explore the baptism debate →</a></p>
+          </div>
+        </details>
+        <details class="group bg-white rounded-xl border border-charcoal/10 overflow-hidden">
+          <summary class="flex items-center justify-between cursor-pointer px-6 py-4 font-bold text-charcoal hover:text-crimson transition-colors">
+            <span>Is believing in predestination heretical?</span>
+            <svg class="w-5 h-5 text-charcoal/40 group-open:rotate-180 transition-transform shrink-0 ml-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-charcoal/70 font-content">
+            <p>The opposite view is. The Council of Orange (529 AD) condemned the idea that humans can choose God without grace — that's Pelagianism. But strong predestination was condemned at Arles (473 AD). Every position on the spectrum has been condemned by someone. <a href="/explore/pelagianism" class="text-crimson hover:underline">Explore the grace debate →</a></p>
+          </div>
+        </details>
+        <details class="group bg-white rounded-xl border border-charcoal/10 overflow-hidden">
+          <summary class="flex items-center justify-between cursor-pointer px-6 py-4 font-bold text-charcoal hover:text-crimson transition-colors">
+            <span>Is sola scriptura heretical?</span>
+            <svg class="w-5 h-5 text-charcoal/40 group-open:rotate-180 transition-transform shrink-0 ml-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-charcoal/70 font-content">
+            <p>The Council of Trent (1545) condemned it. But it's the foundation of Protestantism — and half the world's Christians hold to it in some form. Meanwhile, Catholics consider the Protestant rejection of tradition heretical. Both sides have councils backing them up. <a href="/explore/sola-scriptura" class="text-crimson hover:underline">Explore sola scriptura →</a></p>
+          </div>
+        </details>
+        <details class="group bg-white rounded-xl border border-charcoal/10 overflow-hidden">
+          <summary class="flex items-center justify-between cursor-pointer px-6 py-4 font-bold text-charcoal hover:text-crimson transition-colors">
+            <span>Is speaking in tongues still real?</span>
+            <svg class="w-5 h-5 text-charcoal/40 group-open:rotate-180 transition-transform shrink-0 ml-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-charcoal/70 font-content">
+            <p>Cessationists say the miraculous gifts stopped with the apostles. Continuationists — now the fastest-growing segment of global Christianity — say they didn't. The early church condemned Montanism for claiming new prophecy, but never ruled the gifts had ceased. <a href="/explore/cessationism" class="text-crimson hover:underline">Explore cessationism →</a></p>
+          </div>
+        </details>
+      </div>
+      <p class="text-center mt-8 text-charcoal/50 font-content text-sm">Every position has been condemned by someone. <a href="/quiz" class="text-crimson hover:underline font-semibold">Take the quiz to find out who condemns yours →</a></p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 px-4">
     <div class="max-w-4xl mx-auto text-center">
       <h2
         class="text-2xl md:text-3xl font-bold mb-8 text-charcoal"
