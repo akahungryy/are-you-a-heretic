@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Search" description="Search across all Are You a Heretic content — heresies, articles, councils, and more.">
+  <div data-pagefind-ignore="all">
+  <section class="bg-charcoal text-parchment">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <h1 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-3">Search</h1>
+      <p class="text-parchment/70 text-lg">Find heresies, articles, councils, and more.</p>
+    </div>
+  </section>
+
+  <section class="bg-parchment">
+    <div class="max-w-3xl mx-auto px-4 py-10">
+      <!-- Search input -->
+      <div class="relative mb-8">
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-charcoal/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" stroke-width="2" />
+          <path stroke-linecap="round" stroke-width="2" d="m21 21-4.35-4.35" />
+        </svg>
+        <input
+          id="page-search-input"
+          type="text"
+          placeholder="Search heresies, articles, councils..."
+          class="w-full pl-12 pr-4 py-3.5 border border-charcoal/20 rounded-xl bg-white text-charcoal placeholder-charcoal/40 outline-none focus:border-gold transition-colors text-base"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          autofocus
+        />
+      </div>
+
+      <!-- Results count -->
+      <div id="page-search-count" class="hidden text-sm text-charcoal/50 mb-6"></div>
+
+      <!-- Empty state -->
+      <div id="page-search-empty" class="text-center py-16 text-charcoal/40">
+        <svg class="w-12 h-12 mx-auto mb-4 text-charcoal/20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" stroke-width="1.5" />
+          <path stroke-linecap="round" stroke-width="1.5" d="m21 21-4.35-4.35" />
+        </svg>
+        <p class="text-base">Enter a search term to explore.</p>
+        <p class="text-sm mt-1">Try "arianism", "trinity", or "pelagius".</p>
+      </div>
+
+      <!-- No results state -->
+      <div id="page-search-no-results" class="hidden text-center py-16 text-charcoal/40">
+        <p class="text-base">No results found.</p>
+        <p class="text-sm mt-1">Try a different search term or browse the <a href="/explore" class="text-crimson underline">Explore</a> page.</p>
+      </div>
+
+      <!-- Results list -->
+      <div id="page-search-results" class="hidden space-y-1"></div>
+
+      <!-- Load more button -->
+      <div id="page-search-more" class="hidden text-center mt-8">
+        <button id="page-load-more" type="button" class="px-6 py-2.5 bg-gold text-charcoal font-bold rounded-xl hover:bg-gold-light transition-colors cursor-pointer text-sm font-display shadow-sm hover:shadow-md">
+          Load more results
+        </button>
+      </div>
+    </div>
+  </section>
+  </div>
+</BaseLayout>
+
+<script>
+  function initPageSearch() {
+    const input = document.getElementById('page-search-input') as HTMLInputElement | null;
+    const countEl = document.getElementById('page-search-count');
+    const emptyState = document.getElementById('page-search-empty');
+    const noResults = document.getElementById('page-search-no-results');
+    const resultsContainer = document.getElementById('page-search-results');
+    const moreContainer = document.getElementById('page-search-more');
+    const loadMoreBtn = document.getElementById('page-load-more');
+
+    if (!input || !countEl || !emptyState || !noResults || !resultsContainer || !moreContainer || !loadMoreBtn) return;
+
+    let pagefind: any = null;
+    let debounceTimer: ReturnType<typeof setTimeout>;
+    let currentResults: any[] = [];
+    let displayedCount = 0;
+    const PAGE_SIZE = 20;
+
+    const sectionColors: Record<string, string> = {
+      Heresies: 'bg-crimson/10 text-crimson',
+      Articles: 'bg-gold/15 text-charcoal/70',
+      About: 'bg-charcoal/8 text-charcoal/50',
+    };
+
+    async function loadPagefind() {
+      if (pagefind) return pagefind;
+      try {
+        pagefind = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
+        await pagefind.init();
+      } catch {
+        pagefind = null;
+      }
+      return pagefind;
+    }
+
+    function showState(state: 'empty' | 'no-results' | 'results') {
+      emptyState.classList.toggle('hidden', state !== 'empty');
+      noResults.classList.toggle('hidden', state !== 'no-results');
+      resultsContainer.classList.toggle('hidden', state !== 'results');
+      countEl.classList.toggle('hidden', state !== 'results');
+      moreContainer.classList.add('hidden');
+    }
+
+    async function renderResults(startIndex: number) {
+      const slice = currentResults.slice(startIndex, startIndex + PAGE_SIZE);
+      const loaded = await Promise.all(slice.map((r: any) => r.data()));
+
+      for (const result of loaded) {
+        const section = result.meta?.section || '';
+        const colorClass = sectionColors[section] || 'bg-charcoal/8 text-charcoal/50';
+        const div = document.createElement('div');
+        div.innerHTML = `
+          <a href="${result.url}" class="block px-4 py-4 rounded-xl hover:bg-gold/8 transition-colors border border-transparent hover:border-gold/20 group">
+            <div class="flex items-center gap-2 mb-1">
+              <h2 class="font-display font-semibold text-charcoal group-hover:text-crimson transition-colors">${result.meta?.title || result.url}</h2>
+              ${section ? `<span class="inline-flex px-1.5 py-0.5 rounded text-[10px] font-medium ${colorClass}">${section}</span>` : ''}
+            </div>
+            <p class="text-charcoal/50 text-sm leading-relaxed line-clamp-3">${result.excerpt}</p>
+          </a>
+        `;
+        resultsContainer.appendChild(div);
+      }
+
+      displayedCount = startIndex + loaded.length;
+      moreContainer.classList.toggle('hidden', displayedCount >= currentResults.length);
+    }
+
+    async function performSearch(query: string) {
+      const pf = await loadPagefind();
+      if (!pf) {
+        noResults.querySelector('p')!.textContent = 'Search index not available. Run a production build first.';
+        showState('no-results');
+        return;
+      }
+
+      const search = await pf.search(query);
+      currentResults = search.results;
+      displayedCount = 0;
+      resultsContainer.innerHTML = '';
+
+      if (!currentResults.length) {
+        showState('no-results');
+        return;
+      }
+
+      countEl.textContent = `${currentResults.length} result${currentResults.length === 1 ? '' : 's'} for "${query}"`;
+      showState('results');
+      await renderResults(0);
+
+      const url = new URL(window.location.href);
+      url.searchParams.set('q', query);
+      history.replaceState(null, '', url.toString());
+    }
+
+    input.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      const query = input.value.trim();
+      if (!query) {
+        showState('empty');
+        const url = new URL(window.location.href);
+        url.searchParams.delete('q');
+        history.replaceState(null, '', url.toString());
+        return;
+      }
+      debounceTimer = setTimeout(() => performSearch(query), 250);
+    });
+
+    loadMoreBtn.addEventListener('click', () => renderResults(displayedCount));
+
+    // Load initial query from URL
+    loadPagefind().then(() => {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      if (q) {
+        input.value = q;
+        performSearch(q);
+      }
+    });
+  }
+
+  initPageSearch();
+  document.addEventListener('astro:page-load', () => initPageSearch());
+</script>

@@ -59,6 +59,7 @@ const heresyChristosLinks = christosLinks[entry.id] || [];
 ---
 
 <ContentLayout title={entry.data.title} description={entry.data.shortDescription}>
+  <meta data-pagefind-meta="section:Heresies" />
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",

@@ -4,5 +4,7 @@ import HeresyProfileCard from '../components/quiz/HeresyProfileCard';
 ---
 
 <BaseLayout title="Your Results" description="Your heresy profile is ready. See what 2,000 years of church history makes of your beliefs.">
-  <HeresyProfileCard client:load />
+  <div data-pagefind-ignore="all">
+    <HeresyProfileCard client:load />
+  </div>
 </BaseLayout>

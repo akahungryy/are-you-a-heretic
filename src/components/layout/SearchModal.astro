@@ -1,0 +1,230 @@
+<!-- Search Modal — triggered by search icon or Cmd/Ctrl+K -->
+<div id="search-modal" class="hidden fixed inset-0 z-[70] flex items-start justify-center pt-[10vh]" role="dialog" aria-modal="true" aria-label="Search">
+  <!-- Backdrop -->
+  <div id="search-backdrop" class="absolute inset-0 bg-charcoal/50 backdrop-blur-sm"></div>
+
+  <!-- Modal panel -->
+  <div id="search-panel" class="relative w-full max-w-xl mx-4 bg-parchment rounded-xl border border-charcoal/10 shadow-xl overflow-hidden">
+    <!-- Search input -->
+    <div class="flex items-center gap-3 px-4 border-b border-charcoal/10">
+      <svg class="w-5 h-5 text-charcoal/40 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="8" stroke-width="2" />
+        <path stroke-linecap="round" stroke-width="2" d="m21 21-4.35-4.35" />
+      </svg>
+      <input
+        id="search-input"
+        type="text"
+        placeholder="Search heresies, articles, councils..."
+        class="flex-1 py-3.5 bg-transparent text-charcoal placeholder-charcoal/40 outline-none text-base"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+      <kbd class="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono text-charcoal/30 border border-charcoal/15 rounded">Esc</kbd>
+    </div>
+
+    <!-- Results area -->
+    <div id="search-results" class="max-h-[60vh] overflow-y-auto">
+      <!-- Empty state -->
+      <div id="search-empty" class="px-4 py-8 text-center text-charcoal/40 text-sm">
+        Start typing to search heresies, articles, and more.
+      </div>
+      <!-- No results state -->
+      <div id="search-no-results" class="hidden px-4 py-8 text-center text-charcoal/40 text-sm">
+        No results found. Try a different search term.
+      </div>
+      <!-- Results list -->
+      <ul id="search-list" class="hidden" role="listbox"></ul>
+    </div>
+
+    <!-- Footer -->
+    <div id="search-footer" class="hidden border-t border-charcoal/10 px-4 py-2.5 flex items-center justify-between text-xs text-charcoal/40">
+      <span id="search-count"></span>
+      <a id="search-view-all" href="/search" class="text-crimson hover:text-crimson-light font-medium transition-colors">View all results &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initSearchModal() {
+    const modal = document.getElementById('search-modal');
+    const backdrop = document.getElementById('search-backdrop');
+    const input = document.getElementById('search-input') as HTMLInputElement | null;
+    const resultsList = document.getElementById('search-list');
+    const emptyState = document.getElementById('search-empty');
+    const noResults = document.getElementById('search-no-results');
+    const footer = document.getElementById('search-footer');
+    const countEl = document.getElementById('search-count');
+    const viewAllLink = document.getElementById('search-view-all') as HTMLAnchorElement | null;
+
+    if (!modal || !input || !resultsList || !emptyState || !noResults || !footer || !countEl || !viewAllLink) return;
+
+    let pagefind: any = null;
+    let debounceTimer: ReturnType<typeof setTimeout>;
+    let selectedIndex = -1;
+
+    async function loadPagefind() {
+      if (pagefind) return pagefind;
+      try {
+        pagefind = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
+        await pagefind.init();
+      } catch {
+        pagefind = null;
+      }
+      return pagefind;
+    }
+
+    function openModal() {
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      input.value = '';
+      input.focus();
+      showEmpty();
+      loadPagefind();
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      input.value = '';
+      selectedIndex = -1;
+    }
+
+    function showEmpty() {
+      emptyState.classList.remove('hidden');
+      noResults.classList.add('hidden');
+      resultsList.classList.add('hidden');
+      footer.classList.add('hidden');
+    }
+
+    function showNoResults() {
+      emptyState.classList.add('hidden');
+      noResults.classList.remove('hidden');
+      resultsList.classList.add('hidden');
+      footer.classList.add('hidden');
+    }
+
+    function showResults(results: any[], total: number, query: string) {
+      emptyState.classList.add('hidden');
+      noResults.classList.add('hidden');
+      resultsList.classList.remove('hidden');
+      footer.classList.remove('hidden');
+      countEl.textContent = `${total} result${total === 1 ? '' : 's'}`;
+      viewAllLink.href = `/search?q=${encodeURIComponent(query)}`;
+      selectedIndex = -1;
+    }
+
+    const sectionColors: Record<string, string> = {
+      Heresies: 'bg-crimson/10 text-crimson',
+      Articles: 'bg-gold/15 text-charcoal/70',
+      About: 'bg-charcoal/8 text-charcoal/50',
+    };
+
+    async function performSearch(query: string) {
+      const pf = await loadPagefind();
+      if (!pf) {
+        noResults.textContent = 'Search index not available. Run a production build first.';
+        showNoResults();
+        return;
+      }
+
+      const search = await pf.search(query);
+      if (!search.results.length) {
+        showNoResults();
+        return;
+      }
+
+      const sliced = search.results.slice(0, 8);
+      const loaded = await Promise.all(sliced.map((r: any) => r.data()));
+
+      resultsList.innerHTML = '';
+      for (const result of loaded) {
+        const section = result.meta?.section || '';
+        const colorClass = sectionColors[section] || 'bg-charcoal/8 text-charcoal/50';
+        const li = document.createElement('li');
+        li.setAttribute('role', 'option');
+        li.className = 'search-result';
+        li.innerHTML = `
+          <a href="${result.url}" class="flex flex-col gap-1 px-4 py-3 hover:bg-gold/8 transition-colors border-b border-charcoal/5 group">
+            <div class="flex items-center gap-2">
+              <span class="font-display font-semibold text-charcoal group-hover:text-crimson transition-colors text-sm">${result.meta?.title || result.url}</span>
+              ${section ? `<span class="inline-flex px-1.5 py-0.5 rounded text-[10px] font-medium ${colorClass}">${section}</span>` : ''}
+            </div>
+            <span class="text-charcoal/50 text-xs leading-relaxed line-clamp-2">${result.excerpt}</span>
+          </a>
+        `;
+        resultsList.appendChild(li);
+      }
+
+      showResults(loaded, search.results.length, query);
+    }
+
+    function updateSelection() {
+      const items = resultsList.querySelectorAll('.search-result');
+      items.forEach((item, i) => {
+        const link = item.querySelector('a');
+        if (link) {
+          if (i === selectedIndex) {
+            link.classList.add('bg-gold/8');
+          } else {
+            link.classList.remove('bg-gold/8');
+          }
+        }
+      });
+    }
+
+    // Event listeners
+    input.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      const query = input.value.trim();
+      if (!query) {
+        showEmpty();
+        return;
+      }
+      debounceTimer = setTimeout(() => performSearch(query), 200);
+    });
+
+    input.addEventListener('keydown', (e) => {
+      const items = resultsList.querySelectorAll('.search-result');
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+        updateSelection();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = Math.max(selectedIndex - 1, -1);
+        updateSelection();
+      } else if (e.key === 'Enter' && selectedIndex >= 0) {
+        e.preventDefault();
+        const link = items[selectedIndex]?.querySelector('a') as HTMLAnchorElement;
+        if (link) {
+          closeModal();
+          window.location.href = link.href;
+        }
+      }
+    });
+
+    backdrop?.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (modal.classList.contains('hidden')) {
+          openModal();
+        } else {
+          closeModal();
+        }
+      }
+    });
+
+    // Expose open function globally for the nav button
+    (window as any).__openSearch = openModal;
+  }
+
+  // Init on page load and after view transitions
+  initSearchModal();
+  document.addEventListener('astro:page-load', () => initSearchModal());
+</script>

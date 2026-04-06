@@ -20,7 +20,7 @@ const navItems = [
     >
       Are You a Heretic?<HereticTick size="sm" />
     </a>
-    <div class="hidden sm:flex gap-6 text-sm font-medium">
+    <div class="hidden sm:flex items-center gap-6 text-sm font-medium">
       {navItems.map((item) => (
         <a
           href={item.href}
@@ -34,19 +34,33 @@ const navItems = [
           {item.label}
         </a>
       ))}
+      <button id="search-btn-desktop" type="button" class="text-charcoal/40 hover:text-crimson transition-colors" aria-label="Search (Cmd+K)" onclick="window.__openSearch?.()">
+        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" stroke-width="2" />
+          <path stroke-linecap="round" stroke-width="2" d="m21 21-4.35-4.35" />
+        </svg>
+      </button>
     </div>
-    <!-- Mobile menu button -->
-    <button
-      id="mobile-menu-btn"
-      class="sm:hidden p-2 text-charcoal"
-      aria-label="Toggle navigation menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
+    <!-- Mobile buttons -->
+    <div class="flex items-center gap-1 sm:hidden">
+      <button id="search-btn-mobile" type="button" class="p-2 text-charcoal/50 hover:text-crimson transition-colors" aria-label="Search" onclick="window.__openSearch?.()">
+        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" stroke-width="2" />
+          <path stroke-linecap="round" stroke-width="2" d="m21 21-4.35-4.35" />
+        </svg>
+      </button>
+      <button
+        id="mobile-menu-btn"
+        class="p-2 text-charcoal"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
   </nav>
   <!-- Mobile menu -->
   <div id="mobile-menu" class="sm:hidden border-t border-charcoal/10 bg-parchment px-4 transition-all duration-200 max-h-0 overflow-hidden">

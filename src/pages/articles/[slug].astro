@@ -31,6 +31,7 @@ const publishDateFormatted = entry.data.publishDate.toLocaleDateString('en-US', 
 ---
 
 <ContentLayout title={entry.data.title} description={entry.data.description}>
+  <meta data-pagefind-meta="section:Articles" />
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
